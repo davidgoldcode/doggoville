@@ -1,23 +1,16 @@
-import logo from "./logo.svg";
-import "./index.css";
+import GlobalStyles from "./styles/GlobalStyles";
+import Typography from "./styles/Typography";
+import { Route, useHistory, Switch } from "react-router-dom";
+
+import { Sidebar } from "./components/sidebar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="grid md:grid-cols-5 md:grid-rows-1 grid-cols-1 grid-rows-2 h-screen w-screen">
+      <GlobalStyles />
+      <Typography />
+
+      <Sidebar />
     </div>
   );
 }
