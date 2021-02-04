@@ -4,6 +4,7 @@ import { Route, useHistory, Switch } from "react-router-dom";
 
 import { Sidebar } from "./components/sidebar";
 import { Main } from "./components/main";
+import { Tabs } from "./components/tabs";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Typography />
 
       <Sidebar />
+      <Tabs />
       <Main />
     </div>
   );
