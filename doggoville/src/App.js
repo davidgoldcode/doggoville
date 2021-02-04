@@ -1,20 +1,17 @@
 import GlobalStyles from "./styles/GlobalStyles";
 import Typography from "./styles/Typography";
-import {
-  BrowserRouter as Router,
-  Route,
-  useHistory,
-  Switch,
-} from "react-router-dom";
-import "./index.css";
+import { Route, useHistory, Switch } from "react-router-dom";
+
+import { Sidebar } from "./components/sidebar";
 
 function App() {
   return (
-    <>
+    <div className="grid md:grid-cols-5 md:grid-rows-1 grid-cols-1 grid-rows-2 h-screen w-screen">
       <GlobalStyles />
       <Typography />
-      <p>heyyyy</p>
-    </>
+
+      <Sidebar />
+    </div>
   );
 }
 

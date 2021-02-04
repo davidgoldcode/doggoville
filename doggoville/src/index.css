@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @tailwind base {
+  h1 a {
+    @apply text-primary md:text-3xl text-xl font-black m-2 lowercase;
+  }
+} */
