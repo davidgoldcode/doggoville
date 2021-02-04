@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <div className="md:col-start-3	md:col-span-3">
       <Search />
-      <Modal />
+      {/* <Modal /> */}
       <Gallery />
     </div>
   );
