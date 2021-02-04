@@ -3,6 +3,7 @@ import Typography from "./styles/Typography";
 import { Route, useHistory, Switch } from "react-router-dom";
 
 import { Sidebar } from "./components/sidebar";
+import { Main } from "./components/main";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Typography />
 
       <Sidebar />
+      <Main />
     </div>
   );
 }
