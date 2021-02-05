@@ -36,13 +36,14 @@ const Main = () => {
           .then(
             axios.spread((...res) => {
               const arr = res.map((item) => item.data.message).flat();
+              return stableDispatch({ type: "SET_IMGS", payload: arr });
             })
           )
           .catch((err) => console.log(err));
         console.log(fetchUrls);
       }
     }
-  }, [location, stableDispatch, state.breeds]);
+  }, [location, stableDispatch, state.breeds, state.sorted]);
 
   return (
     <div className="md:col-start-3	md:col-span-3">
