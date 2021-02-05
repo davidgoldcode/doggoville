@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/state";
 import { Div } from "./gallery-styling";
 
 const Gallery = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const { photos } = state;
 
   return (
@@ -13,7 +13,6 @@ const Gallery = () => {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {console.log(photos, "within")}
         {photos.map((item) => (
           <img src={item} alt="Random dog" />
         ))}

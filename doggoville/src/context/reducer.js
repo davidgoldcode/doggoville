@@ -2,7 +2,7 @@ export const SET_IMGS = "SET_IMGS";
 export const GET_BREEDS = "GET_BREEDS";
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const SET_CURR = "SET_CURR";
-export const SET_SORTED = "SET_SORTED";
+export const SET_FIRST_INITIAL = "SET_FIRST_INITIAL";
 export const INITIAL_LOAD = "INITIAL_LOAD";
 
 // ------ Reasoning ------
@@ -40,7 +40,7 @@ const reducer = (state, action) => {
         ...state,
         curr: action.payload,
       };
-    case SET_SORTED:
+    case SET_FIRST_INITIAL:
       return {
         ...state,
         sorted: action.payload,
