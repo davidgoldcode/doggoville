@@ -2,16 +2,17 @@ import axios from "axios";
 import { useState, useCallback, useEffect } from "react";
 import { useAppContext } from "../context/state";
 
-const urlRandom = "https://dog.ceo/api/breeds/image/random/20";
-const urlAllBreeds = "https://dog.ceo/api/breeds/list/all";
-// https://dog.ceo/api/breed/hound/images - by breed
+export const urlRandom = "https://dog.ceo/api/breeds/image/random/20";
+export const urlAllBreeds = "https://dog.ceo/api/breeds/list/all";
+export const urlByBreed = "https://dog.ceo/api/breed/hound/images/20";
 
-const fetch = async (url) => {
+export const fetch = async (url) => {
   return await axios.get(url);
 };
 
 const useFetch = (query, immediate = true, initialState = []) => {
   const { state, dispatch } = useAppContext();
+  const stableDispatch = useCallback(dispatch, [dispatch]);
 
   const [status, setStatus] = useState("idle");
   const [results, setResults] = useState(initialState);
@@ -28,7 +29,7 @@ const useFetch = (query, immediate = true, initialState = []) => {
             .all([random, breeds])
             .then(
               axios.spread((...res) => {
-                dispatch({ type: "INITIAL_LOAD", payload: res });
+                stableDispatch({ type: "INITIAL_LOAD", payload: res });
                 return setResults(res);
               })
             )
@@ -36,8 +37,11 @@ const useFetch = (query, immediate = true, initialState = []) => {
               setStatus("error)");
             });
           break;
-        case "else":
-          //   placeholder
+        case "searchCurr":
+          axios
+            .get(`https://dog.ceo/api/breed/${state.curr}/images`)
+            .then((res) => console.log(res, "!!!!!!jasdf;lajkd;"))
+            .catch((err) => console.log(err));
           break;
         default:
           return;
@@ -54,7 +58,7 @@ const useFetch = (query, immediate = true, initialState = []) => {
     //   .catch((error) => {
     //     setStatus("error");
     //   });
-  }, [query]);
+  }, [query, stableDispatch, state.curr]);
 
   useEffect(() => {
     if (immediate) {

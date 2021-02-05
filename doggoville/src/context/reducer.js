@@ -11,7 +11,6 @@ export const INITIAL_LOAD = "INITIAL_LOAD";
 // readability & clarity
 
 const reducer = (state, action) => {
-  console.log(action.type, action.payload, "!!!! - this log is in reducer.js");
   switch (action.type) {
     case INITIAL_LOAD:
       const [randomImgs, allBreeds] = action.payload;
