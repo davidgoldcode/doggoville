@@ -13,7 +13,7 @@ const initialState = {
   photos: [],
   breeds: {},
   sorted: {},
-  modalStatus: false,
+  showModal: false,
   curr: "",
 };
 
@@ -27,6 +27,8 @@ export function ContextProvider({ children }) {
 
   // Stabilize dispatch so it can be used as a useeffect dependency
   const dispatch = useCallback(unstableDispatch, [unstableDispatch]);
+
+  console.log({ state, dispatch }, "state.js");
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

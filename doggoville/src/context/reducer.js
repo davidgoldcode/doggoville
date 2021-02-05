@@ -12,6 +12,7 @@ export const STATE_RELOAD = "STATE_RELOAD";
 // readability & clarity
 
 const reducer = (state, action) => {
+  console.log(state, action, "reducer.js");
   switch (action.type) {
     case INITIAL_LOAD:
       const [randomImgs, allBreeds] = action.payload;
@@ -33,7 +34,7 @@ const reducer = (state, action) => {
     case TOGGLE_MODAL:
       return {
         ...state,
-        modal: !state.modal,
+        showModal: !state.showModal,
       };
     case SET_CURR:
       return {
