@@ -1,7 +1,7 @@
 export const alphabatize = (arr) => {
   let result = [];
   arr.reduce((accum, elem) => {
-    let firstLetter = elem[0];
+    const firstLetter = elem[0];
 
     if (!accum[firstLetter]) {
       accum[firstLetter] = [elem];

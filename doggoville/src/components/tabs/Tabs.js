@@ -16,8 +16,6 @@ const Tabs = () => {
 
   const history = useHistory();
 
-  const stableDispatch = useCallback(dispatch, [dispatch]);
-
   const [breedsArr, setBreedsArr] = useState([]);
   const [clicked, setClicked] = useState("breeds");
 
@@ -28,10 +26,10 @@ const Tabs = () => {
 
     // instantiate an object that will hold dogs first
     // initial as key and attach an array as its value
-    let byInitial = alphabatize(arr);
+    const byInitial = alphabatize(arr);
 
-    return stableDispatch({ type: "SET_FIRST_INITIAL", payload: byInitial });
-  }, [breeds, stableDispatch]);
+    return dispatch({ type: "SET_FIRST_INITIAL", payload: byInitial });
+  }, [breeds, dispatch]);
 
   const buttonHandler = (evt) => {
     evt.preventDefault();
