@@ -70,6 +70,7 @@ export const onRouteChange = (path, breeds, sorted, dispatch) => {
       const queries = query.split("/");
 
       // if it's none of the above & longer than length of 2, it's incorrect
+      // Add reroute here
 
       if (queries.length !== 2) {
         return;
