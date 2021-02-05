@@ -58,8 +58,7 @@ const Tabs = () => {
     <div className="flex flex-col w-full md:col-start-2 md:col-span-1">
       <div className="w-full text-center">
         {buttonNames.map((item, index) =>
-          item.name === "subbreeds" &&
-          state.breeds[state.curr].length === 0 ? null : (
+          item.name === "subbreeds" && !state.breeds[state.curr] ? null : (
             <button
               key={index}
               className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
@@ -90,19 +89,21 @@ const Tabs = () => {
         ))}
 
         {/* TO ADD: subbreeds */}
-        {state.sorted[state.curr] &&
-          state.sorted[state.curr].map((item, index) => (
-            <Link
-              key={index}
-              name={item}
-              className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
-                clicked !== "breeds" && "hidden"
-              }`}
-              onClick={(e) => clickHandler(e)}
-            >
-              {item}
-            </Link>
-          ))}
+        {state.breeds[state.curr].length < 1 ||
+        isNaN(state.breeds[state.curr].length)
+          ? null
+          : state.breeds[state.curr].map((item, index) => (
+              <Link
+                key={index}
+                name={item}
+                className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
+                  clicked !== "subbreeds" && "hidden"
+                }`}
+                onClick={(e) => clickHandler(e)}
+              >
+                {item}
+              </Link>
+            ))}
 
         {/* TO ADD: by first letter */}
         {Object.keys(state.sorted).map((item, index) => (
