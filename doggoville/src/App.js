@@ -1,8 +1,9 @@
 import GlobalStyles from "./styles/GlobalStyles";
 import Typography from "./styles/Typography";
 import { useAppContext } from "./context/state";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import useFetch from "./utils/useFetch";
+import { urlRandom, urlAllBreeds, fetch } from "./utils/useFetch";
 import axios from "axios";
 import { Route, useHistory, Switch } from "react-router-dom";
 
@@ -13,16 +14,22 @@ import { Tabs } from "./components/tabs";
 
 function App() {
   const { state, dispatch } = useAppContext();
+  const stableDispatch = useCallback(dispatch, [dispatch]);
   const history = useHistory();
-  const {
-    results: [randomImgs, allBreeds],
-    status,
-  } = useFetch("initialFetch");
 
   useEffect(() => {
-    // window.addEventListener("keydown", handleKeyDown);
-    // return () => {
-    //   window.removeEventListener("keydown", handleKeyDown);};
+    const random = fetch(urlRandom);
+    const breeds = fetch(urlAllBreeds);
+    axios
+      .all([random, breeds])
+      .then(
+        axios.spread((...res) => {
+          stableDispatch({ type: "INITIAL_LOAD", payload: res });
+        })
+      )
+      .catch((err) => {
+        alert("Something went wrong. Try again in a bit");
+      });
   }, []);
 
   return (

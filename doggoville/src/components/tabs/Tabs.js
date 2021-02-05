@@ -46,11 +46,12 @@ const Tabs = () => {
     evt.preventDefault();
     const { name } = evt.target;
 
-    if (state.breeds[name]) {
+    if (state.breeds[name] || state.sorted[name]) {
       dispatch({ type: "SET_CURR", payload: name });
+      history.push(`/${name}`);
+    } else {
+      console.log("big ole error on tabs");
     }
-
-    history.push(`/${name}`);
   };
 
   return (

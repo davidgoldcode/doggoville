@@ -2,11 +2,11 @@ import axios from "axios";
 import { useState, useCallback, useEffect } from "react";
 import { useAppContext } from "../context/state";
 
-const urlRandom = "https://dog.ceo/api/breeds/image/random/20";
-const urlAllBreeds = "https://dog.ceo/api/breeds/list/all";
-const urlByBreed = "https://dog.ceo/api/breed/hound/images";
+export const urlRandom = "https://dog.ceo/api/breeds/image/random/20";
+export const urlAllBreeds = "https://dog.ceo/api/breeds/list/all";
+export const urlByBreed = "https://dog.ceo/api/breed/hound/images/20";
 
-const fetch = async (url) => {
+export const fetch = async (url) => {
   return await axios.get(url);
 };
 
@@ -40,7 +40,7 @@ const useFetch = (query, immediate = true, initialState = []) => {
         case "searchCurr":
           axios
             .get(`https://dog.ceo/api/breed/${state.curr}/images`)
-            .then((res) => console.log(res))
+            .then((res) => console.log(res, "!!!!!!jasdf;lajkd;"))
             .catch((err) => console.log(err));
           break;
         default:

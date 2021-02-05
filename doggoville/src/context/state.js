@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useCallback, useContext, useReducer } from "react";
 import reducer from "./reducer";
 
 const AppContext = createContext();
@@ -23,8 +23,6 @@ const initialState = {
 
 export function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  console.log(state, "STATE - this log is in state.js");
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
