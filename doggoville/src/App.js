@@ -1,9 +1,6 @@
 import GlobalStyles from "./styles/GlobalStyles";
-import Typography from "./styles/Typography";
 import { useAppContext } from "./context/state";
-import { useEffect, useCallback } from "react";
-import { urlRandom, urlAllBreeds, fetch } from "./utils/useFetch";
-import axios from "axios";
+import { useEffect } from "react";
 import { onRender } from "./utils/fetch";
 import { Route, Switch } from "react-router-dom";
 
@@ -22,7 +19,6 @@ function App() {
   return (
     <div className="grid md:grid-cols-5 md:grid-rows-1 grid-cols-1 grid-rows-2 h-screen w-screen">
       <GlobalStyles />
-      <Typography />
 
       <Sidebar />
       <Tabs />
