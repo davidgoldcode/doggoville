@@ -58,7 +58,9 @@ const Tabs = () => {
     <div className="flex flex-col w-full md:col-start-2 md:col-span-1">
       <div className="w-full text-center">
         {buttonNames.map((item, index) =>
-          item.name === "subbreeds" && !state.breeds[state.curr] ? null : (
+          item.name === "subbreeds" &&
+          (state.breeds[state.curr].length < 1 ||
+            isNaN(state.breeds[state.curr].length)) ? null : (
             <button
               key={index}
               className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
