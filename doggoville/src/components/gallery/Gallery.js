@@ -1,15 +1,17 @@
 import Masonry from "react-masonry-css";
-import { useAppContext } from "../../context/state";
 import { Div } from "./gallery-styling";
 
-const Gallery = () => {
-  const { state } = useAppContext();
-  const { photos } = state;
+const breakpointColumnsObj = {
+  default: 3,
+  1100: 2,
+  700: 1,
+};
 
+const Gallery = ({ photos }) => {
   return (
     <Div>
       <Masonry
-        breakpointCols={3}
+        breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >

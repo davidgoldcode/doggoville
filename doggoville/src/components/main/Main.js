@@ -7,14 +7,17 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const Main = () => {
-  const { state, dispatch } = useAppContext();
+  const {
+    state: { breeds, sorted, photos, modalStatus },
+    dispatch,
+  } = useAppContext();
   const location = useLocation();
   const stableDispatch = useCallback(dispatch, [dispatch]);
 
   useEffect(() => {
-    if (location.pathname.length >= 1) {
+    if (location.pathname.length > 1) {
       const queryString = location.pathname.substring(1);
-      if (state.breeds[queryString]) {
+      if (breeds[queryString]) {
         axios
           .get(`https://dog.ceo/api/breed/${queryString}/images/random/20`)
           .then((res) =>
@@ -23,11 +26,11 @@ const Main = () => {
           .catch((err) =>
             alert("Sorry there was an error. Try again in a bit")
           );
-      } else if (state.sorted[queryString]) {
-        const fetchUrls = state.sorted[queryString].map(function (dog) {
+      } else if (sorted[queryString]) {
+        const fetchUrls = sorted[queryString].map(function (dog) {
           return axios.get(
             `https://dog.ceo/api/breed/${dog}/images/random/${Math.floor(
-              20 / state.sorted[queryString].length
+              20 / sorted[queryString].length
             )}`
           );
         });
@@ -40,16 +43,28 @@ const Main = () => {
             })
           )
           .catch((err) => console.log(err));
-        console.log(fetchUrls);
+      } else {
+        const queries = queryString.split("/");
+        if (queries.length !== 2) {
+        } else {
+          axios
+            .get(
+              `https://dog.ceo/api/breed/${queries[0]}/${queries[1]}/images/random/20`
+            )
+            .then((res) => {
+              stableDispatch({ type: "SET_IMGS", payload: res.data.message });
+            })
+            .catch((err) => console.log(err));
+        }
       }
     }
-  }, [location, stableDispatch, state.breeds, state.sorted]);
+  }, [location, stableDispatch, breeds, sorted]);
 
   return (
-    <div className="md:col-start-3	md:col-span-3">
+    <div className="md:col-start-3	md:col-span-3 md:row-start-1 row-span-1 row-start-2">
       <Search />
-      {/* <Modal /> */}
-      <Gallery />
+      {modalStatus && <Modal />}
+      <Gallery photos={photos} />
     </div>
   );
 };
