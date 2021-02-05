@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import reducer from "./reducer";
 
 const AppContext = createContext();
@@ -18,13 +18,12 @@ const initialState = {
 };
 
 // ------ Reasoning ------
-// useContext allows us to have more flexibility...
+// useContext allows us to have more flexibility
 // should we need to add on in the future
+// but is likely a premature optimization in this SPA
 
 export function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  console.log(state, "sttate");
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

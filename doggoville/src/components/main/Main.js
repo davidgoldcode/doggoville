@@ -7,15 +7,17 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const Main = () => {
-  const { state, dispatch } = useAppContext();
+  const {
+    state: { breeds, sorted, photos },
+    dispatch,
+  } = useAppContext();
   const location = useLocation();
   const stableDispatch = useCallback(dispatch, [dispatch]);
 
   useEffect(() => {
     if (location.pathname.length > 1) {
       const queryString = location.pathname.substring(1);
-      console.log(queryString);
-      if (state.breeds[queryString]) {
+      if (breeds[queryString]) {
         axios
           .get(`https://dog.ceo/api/breed/${queryString}/images/random/20`)
           .then((res) =>
@@ -24,11 +26,11 @@ const Main = () => {
           .catch((err) =>
             alert("Sorry there was an error. Try again in a bit")
           );
-      } else if (state.sorted[queryString]) {
-        const fetchUrls = state.sorted[queryString].map(function (dog) {
+      } else if (sorted[queryString]) {
+        const fetchUrls = sorted[queryString].map(function (dog) {
           return axios.get(
             `https://dog.ceo/api/breed/${dog}/images/random/${Math.floor(
-              20 / state.sorted[queryString].length
+              20 / sorted[queryString].length
             )}`
           );
         });
@@ -56,13 +58,13 @@ const Main = () => {
         }
       }
     }
-  }, [location, stableDispatch, state.breeds, state.sorted]);
+  }, [location, stableDispatch, breeds, sorted]);
 
   return (
     <div className="md:col-start-3	md:col-span-3">
       <Search />
       {/* <Modal /> */}
-      <Gallery />
+      <Gallery photos={photos} />
     </div>
   );
 };

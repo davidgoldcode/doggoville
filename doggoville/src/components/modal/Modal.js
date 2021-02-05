@@ -14,6 +14,7 @@ const Modal = () => {
                 </span>
               </button>
             </div>
+
             {/*body*/}
             <div className="relative p-6 flex-auto">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -41,6 +42,7 @@ const Modal = () => {
                 </div>
               </div>{" "}
             </div>
+
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
               <button

@@ -1,7 +1,8 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useAppContext } from "../../context/state";
 import { useEffect, useState, useCallback } from "react";
-import useFetch from "../../utils/useFetch";
+import { InfoLinks } from "../../styles/CustomStyles";
+import { alphabatize } from "../../utils/alphabatize";
 
 const buttonNames = [
   { name: "breeds" },
@@ -11,30 +12,26 @@ const buttonNames = [
 
 const Tabs = () => {
   const { state, dispatch } = useAppContext();
+  const { breeds, curr, sorted } = state;
+
   const history = useHistory();
+
   const stableDispatch = useCallback(dispatch, [dispatch]);
 
-  const [breeds, setBreeds] = useState([]);
+  const [breedsArr, setBreedsArr] = useState([]);
   const [clicked, setClicked] = useState("breeds");
 
   useEffect(() => {
-    const arr = Object.keys(state.breeds);
-    setBreeds(arr);
+    // convert updated breeds into an array
+    const arr = Object.keys(breeds);
+    setBreedsArr(arr);
 
-    const alphabatized = arr.reduce((accum, elem) => {
-      let firstLetter = elem[0];
+    // instantiate an object that will hold dogs first
+    // initial as key and attach an array as its value
+    let byInitial = alphabatize(arr);
 
-      if (!accum[firstLetter]) {
-        accum[firstLetter] = [elem];
-      } else {
-        accum[firstLetter].push(elem);
-      }
-
-      return accum;
-    }, {});
-
-    return stableDispatch({ type: "SET_FIRST_INITIAL", payload: alphabatized });
-  }, [state.breeds, stableDispatch]);
+    return stableDispatch({ type: "SET_FIRST_INITIAL", payload: byInitial });
+  }, [breeds, stableDispatch]);
 
   const buttonHandler = (evt) => {
     evt.preventDefault();
@@ -47,14 +44,14 @@ const Tabs = () => {
     const { name } = evt.target;
 
     // to fix
-    if (!state.breeds[name]) {
-      console.log(state.curr);
-      const temp = state.curr;
+    if (!breeds[name]) {
+      console.log(curr);
+      const temp = curr;
       dispatch({ type: "SET_CURR", payload: name });
       return history.push(`/${temp}/${name}`);
     }
 
-    if (state.breeds[name] || state.sorted[name]) {
+    if (breeds[name] || sorted[name]) {
       dispatch({ type: "SET_CURR", payload: name });
       history.push(`/${name}`);
     } else {
@@ -66,10 +63,8 @@ const Tabs = () => {
     <div className="flex flex-col w-full md:col-start-2 md:col-span-1">
       <div className="w-full text-center">
         {buttonNames.map((item, index) =>
-          (item.name === "subbreeds" &&
-            state.breeds[state.curr] === undefined) ||
-          (item.name === "subbreeds" &&
-            state.breeds[state.curr].length <= 0) ? null : (
+          (item.name === "subbreeds" && breeds[curr] === undefined) ||
+          (item.name === "subbreeds" && breeds[curr].length <= 0) ? null : (
             <button
               key={index}
               className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
@@ -86,48 +81,41 @@ const Tabs = () => {
 
       {/* BY BREED */}
       <ul className="list-none overflow-scroll m-4 w-4/6 flex flex-col p-2 self-end md:text-right text-center">
-        {breeds.map((item, index) => (
-          <Link
+        {breedsArr.map((item, index) => (
+          <InfoLinks
             key={index}
             name={item}
-            className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-4 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
-              clicked !== "breeds" && "hidden"
-            }`}
+            className={`${clicked !== "breeds" && "hidden"}`}
             onClick={(e) => clickHandler(e)}
           >
             {item}
-          </Link>
+          </InfoLinks>
         ))}
 
         {/* BY SUBBREED */}
-        {state.breeds[state.curr] === undefined ||
-        state.breeds[state.curr].length < 1
+        {breeds[curr] === undefined || breeds[curr].length < 1
           ? null
-          : state.breeds[state.curr].map((item, index) => (
-              <Link
+          : breeds[curr].map((item, index) => (
+              <InfoLinks
                 key={index}
                 name={item}
-                className={`text-xs sm:m-0.5 font-semibold w-auto inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
-                  clicked !== "subbreeds" && "hidden"
-                }`}
+                className={`${clicked !== "subbreeds" && "hidden"}`}
                 onClick={(e) => clickHandler(e)}
               >
                 {item}
-              </Link>
+              </InfoLinks>
             ))}
 
         {/* BY FIRST LETTER */}
-        {Object.keys(state.sorted).map((item, index) => (
-          <Link
+        {Object.keys(sorted).map((item, index) => (
+          <InfoLinks
             key={index}
             name={item}
-            className={`text-xs text-secondary sm:m-0.5 font-semibold inline-block border-2 border-gray-200 md:py-1 md:px-4 px-1 uppercase rounded-full text-gray-600 bg-purple-200 ${
-              clicked !== "alphabet" && "hidden"
-            }`}
+            className={` ${clicked !== "alphabet" && "hidden"}`}
             onClick={(e) => clickHandler(e)}
           >
             {item}
-          </Link>
+          </InfoLinks>
         ))}
       </ul>
     </div>

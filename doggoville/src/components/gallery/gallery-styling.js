@@ -5,8 +5,8 @@ export const Div = styled.div`
   overflow: scroll;
 
   .my-masonry-grid {
-    display: -webkit-box; /* Not needed if autoprefixing */
-    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: auto;
   }
@@ -16,7 +16,6 @@ export const Div = styled.div`
   }
 
   .my-masonry-grid_column {
-    /* change div to reference your elements you put in <Masonry> */
     margin-bottom: 30px;
   }
 `;

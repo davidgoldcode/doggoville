@@ -1,11 +1,7 @@
 import Masonry from "react-masonry-css";
-import { useAppContext } from "../../context/state";
 import { Div } from "./gallery-styling";
 
-const Gallery = () => {
-  const { state } = useAppContext();
-  const { photos } = state;
-
+const Gallery = ({ photos }) => {
   return (
     <Div>
       <Masonry
