@@ -46,10 +46,12 @@ const Tabs = () => {
     evt.preventDefault();
     const { name } = evt.target;
 
+    // to fix
     if (!state.breeds[name]) {
+      console.log(state.curr);
       const temp = state.curr;
       dispatch({ type: "SET_CURR", payload: name });
-      history.push(`/temp/${name}`);
+      return history.push(`/${temp}/${name}`);
     }
 
     if (state.breeds[name] || state.sorted[name]) {
@@ -82,13 +84,13 @@ const Tabs = () => {
         )}
       </div>
 
-      {/* TO ADD: :ID FUNCTIONALITY // breeds */}
+      {/* BY BREED */}
       <ul className="list-none overflow-scroll m-4 w-4/6 flex flex-col p-2 self-end md:text-right text-center">
         {breeds.map((item, index) => (
           <Link
             key={index}
             name={item}
-            className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
+            className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-4 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
               clicked !== "breeds" && "hidden"
             }`}
             onClick={(e) => clickHandler(e)}
@@ -97,7 +99,7 @@ const Tabs = () => {
           </Link>
         ))}
 
-        {/* TO ADD: subbreeds */}
+        {/* BY SUBBREED */}
         {state.breeds[state.curr] === undefined ||
         state.breeds[state.curr].length < 1
           ? null
@@ -105,7 +107,7 @@ const Tabs = () => {
               <Link
                 key={index}
                 name={item}
-                className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
+                className={`text-xs sm:m-0.5 font-semibold w-auto inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
                   clicked !== "subbreeds" && "hidden"
                 }`}
                 onClick={(e) => clickHandler(e)}
@@ -114,12 +116,12 @@ const Tabs = () => {
               </Link>
             ))}
 
-        {/* TO ADD: by first letter */}
+        {/* BY FIRST LETTER */}
         {Object.keys(state.sorted).map((item, index) => (
           <Link
             key={index}
             name={item}
-            className={`text-xs text-secondary sm:m-0.5 font-semibold inline-block border-2 border-gray-200 md:py-1 md:px-2 px-1 uppercase rounded-full text-gray-600 bg-purple-200 ${
+            className={`text-xs text-secondary sm:m-0.5 font-semibold inline-block border-2 border-gray-200 md:py-1 md:px-4 px-1 uppercase rounded-full text-gray-600 bg-purple-200 ${
               clicked !== "alphabet" && "hidden"
             }`}
             onClick={(e) => clickHandler(e)}

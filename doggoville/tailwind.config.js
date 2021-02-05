@@ -15,6 +15,7 @@ module.exports = {
   },
   variants: {
     extend: {},
+    animation: ["hover", "active"],
   },
   plugins: [],
 };

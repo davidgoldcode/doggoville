@@ -2,7 +2,6 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Typography from "./styles/Typography";
 import { useAppContext } from "./context/state";
 import { useEffect, useCallback } from "react";
-import useFetch from "./utils/useFetch";
 import { urlRandom, urlAllBreeds, fetch } from "./utils/useFetch";
 import axios from "axios";
 import { Route, useHistory, Switch } from "react-router-dom";

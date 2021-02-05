@@ -4,6 +4,7 @@ export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const SET_CURR = "SET_CURR";
 export const SET_FIRST_INITIAL = "SET_FIRST_INITIAL";
 export const INITIAL_LOAD = "INITIAL_LOAD";
+export const STATE_RELOAD = "STATE_RELOAD";
 
 // ------ Reasoning ------
 // Since we're compiling the entire state into one...
@@ -11,6 +12,7 @@ export const INITIAL_LOAD = "INITIAL_LOAD";
 // readability & clarity
 
 const reducer = (state, action) => {
+  console.log(state, action, "!");
   switch (action.type) {
     case INITIAL_LOAD:
       const [randomImgs, allBreeds] = action.payload;
@@ -44,6 +46,8 @@ const reducer = (state, action) => {
         ...state,
         sorted: action.payload,
       };
+    case STATE_RELOAD:
+      return { ...state };
     default:
       return state;
   }
