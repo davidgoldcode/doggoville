@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useCallback, useEffect } from "react";
+import { useAppContext } from "../context/state";
 
 const urlRandom = "https://dog.ceo/api/breeds/image/random/20";
 const urlAllBreeds = "https://dog.ceo/api/breeds/list/all";
@@ -10,35 +11,40 @@ const fetch = async (url) => {
 };
 
 const useFetch = (query, immediate = true, initialState = []) => {
+  const { state, dispatch } = useAppContext();
+
   const [status, setStatus] = useState("idle");
   const [results, setResults] = useState(initialState);
 
   const execute = useCallback(() => {
     setStatus("pending");
 
-    switch (query) {
-      case "initialFetch":
-        const random = fetch(urlRandom);
-        const breeds = fetch(urlAllBreeds);
-        axios
-          .all([random, breeds])
-          .then(
-            axios.spread((...res) => {
-              return setResults(res);
-            })
-          )
-          .catch((err) => {
-            setStatus("error)");
-          });
-        break;
-      case "else":
-        //   placeholder
-        break;
-      default:
-        return;
-    }
+    const asyncHelper = async (query) => {
+      switch (query) {
+        case "initialFetch":
+          const random = fetch(urlRandom);
+          const breeds = fetch(urlAllBreeds);
+          axios
+            .all([random, breeds])
+            .then(
+              axios.spread((...res) => {
+                dispatch({ type: "INITIAL_LOAD", payload: res });
+                return setResults(res);
+              })
+            )
+            .catch((err) => {
+              setStatus("error)");
+            });
+          break;
+        case "else":
+          //   placeholder
+          break;
+        default:
+          return;
+      }
+    };
 
-    console.log("shouldnt be here");
+    asyncHelper(query);
 
     // return fetch(query)
     //   .then((response) => {
@@ -53,7 +59,6 @@ const useFetch = (query, immediate = true, initialState = []) => {
   useEffect(() => {
     if (immediate) {
       execute();
-      console.log(results);
     }
   }, [execute, immediate]);
 

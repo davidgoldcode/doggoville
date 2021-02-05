@@ -11,19 +11,22 @@ import { Sidebar } from "./components/sidebar";
 import { Main } from "./components/main";
 import { Tabs } from "./components/tabs";
 
-// Placeholder - To get rid of
-const url = "https://dog.ceo/api/breeds/image/random/20";
-
 function App() {
   const { state, dispatch } = useAppContext();
-  const x = useFetch("initialFetch");
-  console.log(x, "!!!!");
+  const {
+    results: [randomImgs, allBreeds],
+    status,
+  } = useFetch("initialFetch");
+
+  // const setImages = async () => {
+  //   const [randomImgs, allBreeds] = await results;
+  //   console.log(results);
+  //   dispatch({ type: "SET_IMGS", payload: randomImgs.data.message });
+  //   dispatch({ type: "GET_BREEDS", payload: allBreeds.data.message });
+  // };
 
   useEffect(() => {
-    const url = "https://dog.ceo/api/breeds/image/random/20";
-
     // window.addEventListener("keydown", handleKeyDown);
-
     // return () => {
     //   window.removeEventListener("keydown", handleKeyDown);};
   }, []);

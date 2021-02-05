@@ -3,6 +3,7 @@ export const GET_BREEDS = "GET_BREEDS";
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const SET_CURR = "SET_CURR";
 export const SET_SORTED = "SET_SORTED";
+export const INITIAL_LOAD = "INITIAL_LOAD";
 
 // ------ Reasoning ------
 // Since we're compiling the entire state into one...
@@ -12,6 +13,13 @@ export const SET_SORTED = "SET_SORTED";
 const reducer = (state, action) => {
   console.log(action.type, action.payload, "!!!! - this log is in reducer.js");
   switch (action.type) {
+    case INITIAL_LOAD:
+      const [randomImgs, allBreeds] = action.payload;
+      return {
+        ...state,
+        photos: randomImgs.data.message,
+        breeds: allBreeds.data.message,
+      };
     case SET_IMGS:
       return {
         ...state,
