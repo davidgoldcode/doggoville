@@ -29,27 +29,6 @@ const Gallery = () => {
     setPhotos(items);
   }, [page, state.photos]);
 
-  const containerRef = useRef(null);
-  const [windowWidth, height] = useWindowSize();
-  const { offset, width } = useContainerPosition(containerRef, [
-    windowWidth,
-    height,
-  ]);
-
-  // const positioner = usePositioner(
-  //   {
-  //     // Use windowWidth as a placeholder if container width is 0 which causes positioning problems
-  //     // This happens in initial render then width will be used
-  //     width: width || windowWidth,
-  //     columnGutter: 10,
-  //   }
-  //   // [items]
-  // );
-
-  // const resizeObserver = useResizeObserver(positioner);
-
-  // const { scrollTop, isScrolling } = useScroller(offset);
-
   return (
     <Container>
       <MasonicDiv>
@@ -61,17 +40,6 @@ const Gallery = () => {
           columnWidth={172}
           overscanBy={6}
         />
-        {/* {useMasonry({
-          positioner,
-          scrollTop,
-          isScrolling,
-          height,
-          containerRef,
-          items,
-          overscanBy: 3,
-          render: FakeCard,
-          resizeObserver,
-        })} */}
       </MasonicDiv>
     </Container>
   );
