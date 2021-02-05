@@ -13,6 +13,7 @@ import { Tabs } from "./components/tabs";
 
 function App() {
   const { state, dispatch } = useAppContext();
+  const history = useHistory();
   const {
     results: [randomImgs, allBreeds],
     status,
@@ -39,6 +40,10 @@ function App() {
       <Sidebar />
       <Tabs />
       <Main />
+
+      <Switch>
+        <Route exact path="/:breed" />
+      </Switch>
     </div>
   );
 }
