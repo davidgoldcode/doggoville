@@ -46,6 +46,12 @@ const Tabs = () => {
     evt.preventDefault();
     const { name } = evt.target;
 
+    if (!state.breeds[name]) {
+      const temp = state.curr;
+      dispatch({ type: "SET_CURR", payload: name });
+      history.push(`/temp/${name}`);
+    }
+
     if (state.breeds[name] || state.sorted[name]) {
       dispatch({ type: "SET_CURR", payload: name });
       history.push(`/${name}`);
@@ -58,9 +64,10 @@ const Tabs = () => {
     <div className="flex flex-col w-full md:col-start-2 md:col-span-1">
       <div className="w-full text-center">
         {buttonNames.map((item, index) =>
-          item.name === "subbreeds" &&
-          (state.breeds[state.curr].length < 1 ||
-            isNaN(state.breeds[state.curr].length)) ? null : (
+          (item.name === "subbreeds" &&
+            state.breeds[state.curr] === undefined) ||
+          (item.name === "subbreeds" &&
+            state.breeds[state.curr].length <= 0) ? null : (
             <button
               key={index}
               className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
@@ -91,8 +98,8 @@ const Tabs = () => {
         ))}
 
         {/* TO ADD: subbreeds */}
-        {state.breeds[state.curr].length < 1 ||
-        isNaN(state.breeds[state.curr].length)
+        {state.breeds[state.curr] === undefined ||
+        state.breeds[state.curr].length < 1
           ? null
           : state.breeds[state.curr].map((item, index) => (
               <Link
