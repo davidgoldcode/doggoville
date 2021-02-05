@@ -17,6 +17,7 @@ const Sidebar = () => {
         <Link
           className="text-primary md:text-3xl text-xl font-black m-2 lowercase"
           href="/contact"
+          to="/"
         >
           Contact
         </Link>

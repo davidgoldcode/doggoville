@@ -19,13 +19,6 @@ function App() {
     status,
   } = useFetch("initialFetch");
 
-  // const setImages = async () => {
-  //   const [randomImgs, allBreeds] = await results;
-  //   console.log(results);
-  //   dispatch({ type: "SET_IMGS", payload: randomImgs.data.message });
-  //   dispatch({ type: "GET_BREEDS", payload: allBreeds.data.message });
-  // };
-
   useEffect(() => {
     // window.addEventListener("keydown", handleKeyDown);
     // return () => {
@@ -43,6 +36,8 @@ function App() {
 
       <Switch>
         <Route exact path="/:breed" />
+        <Route path="/:breed/:subbreed" />
+        <Route exact path="/:letter" />
       </Switch>
     </div>
   );

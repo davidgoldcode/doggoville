@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useAppContext } from "../../context/state";
 import { useEffect, useState, useCallback } from "react";
+import useFetch from "../../utils/useFetch";
 
 const buttonNames = [
   { name: "breeds", homePage: true },
@@ -10,7 +11,8 @@ const buttonNames = [
 
 const Tabs = () => {
   const { state, dispatch } = useAppContext();
-  const stableDispatch = useCallback(dispatch, []);
+  const history = useHistory();
+  const stableDispatch = useCallback(dispatch, [dispatch]);
 
   const [breeds, setBreeds] = useState([]);
   const [clicked, setClicked] = useState("breeds");
@@ -34,10 +36,21 @@ const Tabs = () => {
     return stableDispatch({ type: "SET_FIRST_INITIAL", payload: alphabatized });
   }, [state.breeds, stableDispatch]);
 
-  const clickHandler = (evt) => {
+  const buttonHandler = (evt) => {
     evt.preventDefault();
     const { name } = evt.target;
     setClicked(name);
+  };
+
+  const clickHandler = (evt) => {
+    evt.preventDefault();
+    const { name } = evt.target;
+
+    if (state.breeds[name]) {
+      dispatch({ type: "SET_CURR", payload: name });
+    }
+
+    history.push(`/${name}`);
   };
 
   return (
@@ -47,9 +60,9 @@ const Tabs = () => {
           <button
             key={index}
             className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
-              clicked == item.name && "bg-indigo-600"
+              clicked === item.name && "bg-indigo-600"
             }`}
-            onClick={(e) => clickHandler(e)}
+            onClick={(e) => buttonHandler(e)}
             name={item.name}
           >
             {item.name}
@@ -62,10 +75,11 @@ const Tabs = () => {
         {breeds.map((item, index) => (
           <Link
             key={index}
+            name={item}
             className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
               clicked !== "breeds" && "hidden"
             }`}
-            to={`/${item}`}
+            onClick={(e) => clickHandler(e)}
           >
             {item}
           </Link>
@@ -77,10 +91,11 @@ const Tabs = () => {
         {Object.keys(state.sorted).map((item, index) => (
           <Link
             key={index}
-            to={""}
+            name={item}
             className={`text-xs text-secondary sm:m-0.5 font-semibold inline-block border-2 border-gray-200 md:py-1 md:px-2 px-1 uppercase rounded-full text-gray-600 bg-purple-200 ${
               clicked !== "alphabet" && "hidden"
             }`}
+            onClick={(e) => clickHandler(e)}
           >
             {item}
           </Link>
