@@ -43,28 +43,31 @@ const Tabs = () => {
     evt.preventDefault();
     const { name } = evt.target;
 
-    // to fix
-    if (!breeds[name]) {
-      console.log(curr);
+    // validation:
+    // if it's not a breed name AND not a first initial
+    // push onto subbreed route
+    if (!breeds[name] && !sorted[name]) {
       const temp = curr;
       dispatch({ type: "SET_CURR", payload: name });
       return history.push(`/${temp}/${name}`);
     }
-
-    if (breeds[name] || sorted[name]) {
+    // if it's a breed or an initial, push to that route
+    else if (breeds[name] || sorted[name]) {
       dispatch({ type: "SET_CURR", payload: name });
       history.push(`/${name}`);
-    } else {
-      console.log("big ole error on tabs");
+    }
+    // error
+    else {
+      alert("There was an error, try again later");
     }
   };
 
   return (
-    <div className="flex flex-col w-full md:col-start-2 md:col-span-1">
+    <div className="md:flex flex-col w-full md:col-start-2 md:col-span-1 hidden">
       <div className="w-full text-center">
         {buttonNames.map((item, index) =>
-          (item.name === "subbreeds" && breeds[curr] === undefined) ||
-          (item.name === "subbreeds" && breeds[curr].length <= 0) ? null : (
+          item.name === "subbreeds" &&
+          (breeds[curr] === undefined || breeds[curr].length <= 0) ? null : (
             <button
               key={index}
               className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
@@ -80,7 +83,7 @@ const Tabs = () => {
       </div>
 
       {/* BY BREED */}
-      <ul className="list-none overflow-scroll m-4 w-4/6 flex flex-col p-2 self-end md:text-right text-center">
+      <ul className="overflow-scroll w-auto flex flex-col self-center p-4 md:text-right text-center">
         {breedsArr.map((item, index) => (
           <InfoLinks
             key={index}

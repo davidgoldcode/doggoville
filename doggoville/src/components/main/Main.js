@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Main = () => {
   const {
-    state: { breeds, sorted, photos },
+    state: { breeds, sorted, photos, modalStatus },
     dispatch,
   } = useAppContext();
   const location = useLocation();
@@ -61,9 +61,9 @@ const Main = () => {
   }, [location, stableDispatch, breeds, sorted]);
 
   return (
-    <div className="md:col-start-3	md:col-span-3">
+    <div className="md:col-start-3	md:col-span-3 md:row-start-1 row-span-1 row-start-2">
       <Search />
-      {/* <Modal /> */}
+      {modalStatus && <Modal />}
       <Gallery photos={photos} />
     </div>
   );

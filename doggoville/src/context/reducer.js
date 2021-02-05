@@ -12,7 +12,6 @@ export const STATE_RELOAD = "STATE_RELOAD";
 // readability & clarity
 
 const reducer = (state, action) => {
-  console.log(state, action, "!");
   switch (action.type) {
     case INITIAL_LOAD:
       const [randomImgs, allBreeds] = action.payload;
