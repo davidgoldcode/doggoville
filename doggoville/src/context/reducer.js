@@ -20,7 +20,6 @@ const reducer = (state, action) => {
         breeds: allBreeds.data.message,
       };
     case SET_IMGS:
-      console.log(action.payload, "SET IMG");
       return {
         ...state,
         photos: action.payload,

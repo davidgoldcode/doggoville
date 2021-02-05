@@ -4,9 +4,9 @@ import { useEffect, useState, useCallback } from "react";
 import useFetch from "../../utils/useFetch";
 
 const buttonNames = [
-  { name: "breeds", homePage: true },
-  { name: "subbreeds", homePage: false },
-  { name: "alphabet", homePage: true },
+  { name: "breeds" },
+  { name: "subbreeds" },
+  { name: "alphabet" },
 ];
 
 const Tabs = () => {
@@ -57,18 +57,21 @@ const Tabs = () => {
   return (
     <div className="flex flex-col w-full md:col-start-2 md:col-span-1">
       <div className="w-full text-center">
-        {buttonNames.map((item, index) => (
-          <button
-            key={index}
-            className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
-              clicked === item.name && "bg-indigo-600"
-            }`}
-            onClick={(e) => buttonHandler(e)}
-            name={item.name}
-          >
-            {item.name}
-          </button>
-        ))}
+        {buttonNames.map((item, index) =>
+          item.name === "subbreeds" &&
+          state.breeds[state.curr].length === 0 ? null : (
+            <button
+              key={index}
+              className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
+                clicked === item.name && "bg-indigo-600"
+              }`}
+              onClick={(e) => buttonHandler(e)}
+              name={item.name}
+            >
+              {item.name}
+            </button>
+          )
+        )}
       </div>
 
       {/* TO ADD: :ID FUNCTIONALITY // breeds */}
@@ -87,6 +90,19 @@ const Tabs = () => {
         ))}
 
         {/* TO ADD: subbreeds */}
+        {state.sorted[state.curr] &&
+          state.sorted[state.curr].map((item, index) => (
+            <Link
+              key={index}
+              name={item}
+              className={`text-xs sm:m-0.5 font-semibold w-full inline-block border-2 border-indigo-600 md:py-1 md:px-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary ${
+                clicked !== "breeds" && "hidden"
+              }`}
+              onClick={(e) => clickHandler(e)}
+            >
+              {item}
+            </Link>
+          ))}
 
         {/* TO ADD: by first letter */}
         {Object.keys(state.sorted).map((item, index) => (
