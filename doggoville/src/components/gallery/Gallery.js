@@ -30,10 +30,9 @@ const Gallery = () => {
 
   return (
     <>
-      {state.skeleton ? (
-        <Skeleton />
-      ) : (
-        <Container>
+      {state.skeleton && <Skeleton />}
+      {
+        <Container className={`${state.skeleton ? "invisible" : "visible"}`}>
           <MasonicDiv>
             <Masonry
               items={items}
@@ -44,7 +43,7 @@ const Gallery = () => {
             />
           </MasonicDiv>
         </Container>
-      )}{" "}
+      }{" "}
     </>
   );
 };
