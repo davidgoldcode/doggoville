@@ -10,6 +10,7 @@ const Gallery = () => {
   const { state, dispatch } = useAppContext();
 
   const [items, setPhotos] = useState([]);
+  const [hidden, setHidden] = useState(true);
   const page = useParams();
 
   useEffect(() => {
@@ -17,22 +18,21 @@ const Gallery = () => {
       return { id: index, src: info };
     });
 
-    // Turn skeleton animation on, but allow 1.5s for grid to render
-    setTimeout(() => {
-      dispatch({ type: "SKELETON_TOGGLE", payload: false });
-    }, 1500);
-
     setPhotos(items);
 
-    // set back to True for next load
-    dispatch({ type: "SKELETON_TOGGLE", payload: true });
-  }, [page, state.photos, dispatch]);
+    // Keep Skeleton visible for 1.5s as images render
+    setTimeout(() => {
+      setHidden(false);
+    }, 1500);
+
+    setHidden(true);
+  }, [page, state.photos]);
 
   return (
     <>
-      {state.skeleton && <Skeleton />}
+      {hidden && <Skeleton />}
       {
-        <Container className={`${state.skeleton ? "invisible" : "visible"}`}>
+        <Container className={`${hidden ? "invisible" : "visible"}`}>
           <MasonicDiv>
             <Masonry
               items={items}
@@ -43,7 +43,7 @@ const Gallery = () => {
             />
           </MasonicDiv>
         </Container>
-      }{" "}
+      }
     </>
   );
 };
