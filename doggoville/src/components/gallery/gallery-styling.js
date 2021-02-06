@@ -16,21 +16,7 @@ export const Container = styled.div`
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: transform 100ms ease-in-out;
+  justify-content: space-around;
+  align-items: flex-start;
   width: 100%;
-
-  span:last-of-type {
-    color: #fff;
-  }
-
-  &:hover {
-    position: relative;
-    transform: scale(1.125);
-    z-index: 1000;
-
-    span:last-of-type {
-    }
-  }
 `;

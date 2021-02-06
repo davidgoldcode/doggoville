@@ -38,7 +38,7 @@ const Gallery = () => {
           <MasonicDiv>
             <Masonry
               items={photos.slice(0, state.clickCount * 20 + 20)}
-              render={FakeCard}
+              render={DogCard}
               key={uuid()}
               columnGutter={8}
               overscanBy={6}
@@ -56,10 +56,16 @@ const Gallery = () => {
   );
 };
 
-const FakeCard = (props) => (
-  <Card style={{ height: props.data.height }}>
-    <img src={props.data.src} alt="Doggo" />
-  </Card>
-);
+const DogCard = ({ data }) => {
+  const { height, src } = data;
+  return (
+    <Card style={{ height }}>
+      <img src={src} alt="Doggo" />
+      {/* <h6 className="text-xs sm:m-2 text-black font-semibold w-auto inline-block border-2 border-indigo-600 md:py-1 md:p-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800">
+        doge
+      </h6> */}
+    </Card>
+  );
+};
 
 export default Gallery;
