@@ -21,7 +21,7 @@ const Gallery = () => {
 
     setTimeout(() => {
       dispatch({ type: "SKELETON_TOGGLE", payload: false });
-    }, 2000);
+    }, 1500);
 
     setPhotos(items);
 
