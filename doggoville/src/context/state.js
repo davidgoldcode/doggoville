@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useCallback, useReducer } from "react";
 import reducer from "./reducer";
 
 const AppContext = createContext();
@@ -13,7 +13,7 @@ const initialState = {
   photos: [],
   breeds: {},
   sorted: {},
-  modalStatus: false,
+  showModal: false,
   curr: "",
 };
 
@@ -23,7 +23,12 @@ const initialState = {
 // but is likely a premature optimization in this SPA
 
 export function ContextProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, unstableDispatch] = useReducer(reducer, initialState);
+
+  // Stabilize dispatch so it can be used as a useeffect dependency
+  const dispatch = useCallback(unstableDispatch, [unstableDispatch]);
+
+  console.log({ state, dispatch }, "state.js");
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

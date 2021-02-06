@@ -1,9 +1,16 @@
+import { useAppContext } from "../../context/state";
+
 const Search = () => {
+  const { state, dispatch } = useAppContext();
+
   return (
     <>
       <>
         <div className="border-b md:block hidden border-gray-200 flex items-center pt-4 justify-between sm:mb-20 sm:mx-0 sm:px-0">
-          <button className="group leading-8 flex items-center space-x-3 sm:space-x-4 hover:text-purple-600 transition-colors duration-200 w-full py-2">
+          <button
+            onClick={() => dispatch({ type: "TOGGLE_MODAL" })}
+            className="group leading-8 flex items-center space-x-3 sm:space-x-4 hover:text-purple-600 transition-colors duration-200 w-full py-2"
+          >
             <svg
               width="24"
               height="24"
