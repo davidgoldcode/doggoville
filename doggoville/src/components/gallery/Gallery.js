@@ -25,6 +25,7 @@ const Gallery = () => {
       setHidden(false);
     }, 1500);
 
+    // Reset to True
     setHidden(true);
   }, [page, state.photos]);
 
