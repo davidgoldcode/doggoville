@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "../../context/state";
 import { useLocation } from "react-router-dom";
 import { onRouteChange } from "../../utils/fetch";
@@ -7,10 +7,11 @@ import { onRouteChange } from "../../utils/fetch";
 import { Gallery } from "../gallery";
 import { Search } from "../search";
 import { Modal } from "../modal";
+import { Skeleton } from "../skeleton";
 
 const Main = () => {
   const { state, dispatch } = useAppContext();
-  const { breeds, sorted, photos, showModal } = state;
+  const { breeds, sorted, photos, showModal, skeleton } = state;
 
   const location = useLocation();
 

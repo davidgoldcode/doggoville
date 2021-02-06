@@ -15,6 +15,7 @@ const initialState = {
   sorted: {},
   showModal: false,
   curr: "",
+  skeleton: true,
 };
 
 // ------ Reasoning ------

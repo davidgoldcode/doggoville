@@ -1,10 +1,10 @@
-// import Masonry from "react-masonry-css";
 import { MasonicDiv, Container, Card } from "./gallery-styling";
 import { useAppContext } from "../../context/state";
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams } from "react-router-dom";
 import { Masonry } from "masonic";
+import { Skeleton } from "../skeleton";
 
 const Gallery = () => {
   const { state, dispatch } = useAppContext();
@@ -17,21 +17,35 @@ const Gallery = () => {
       return { id: index, src: info };
     });
 
+    console.log("skeleton toggle");
+
+    setTimeout(() => {
+      dispatch({ type: "SKELETON_TOGGLE", payload: false });
+    }, 2000);
+
     setPhotos(items);
-  }, [page, state.photos]);
+
+    dispatch({ type: "SKELETON_TOGGLE", payload: true });
+  }, [page, state.photos, dispatch]);
 
   return (
-    <Container>
-      <MasonicDiv>
-        <Masonry
-          items={items}
-          render={FakeCard}
-          key={uuid()}
-          columnGutter={8}
-          overscanBy={6}
-        />
-      </MasonicDiv>
-    </Container>
+    <>
+      {state.skeleton ? (
+        <Skeleton />
+      ) : (
+        <Container>
+          <MasonicDiv>
+            <Masonry
+              items={items}
+              render={FakeCard}
+              key={uuid()}
+              columnGutter={8}
+              overscanBy={6}
+            />
+          </MasonicDiv>
+        </Container>
+      )}{" "}
+    </>
   );
 };
 
