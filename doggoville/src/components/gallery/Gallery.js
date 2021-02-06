@@ -1,10 +1,13 @@
-import { MasonicDiv, Container, Card } from "./gallery-styling";
+import { MasonicDiv, Container } from "./gallery-styling";
 import { useAppContext } from "../../context/state";
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams } from "react-router-dom";
 import { Masonry } from "masonic";
+
+// Components
 import { Skeleton } from "../skeleton";
+import { DogCard } from "../DogCard";
 
 const Gallery = () => {
   const { state, dispatch } = useAppContext();
@@ -53,18 +56,6 @@ const Gallery = () => {
         </Container>
       }
     </>
-  );
-};
-
-const DogCard = ({ data }) => {
-  const { height, src } = data;
-  return (
-    <Card style={{ height }}>
-      <img src={src} alt="Doggo" />
-      {/* <h6 className="text-xs sm:m-2 text-black font-semibold w-auto inline-block border-2 border-indigo-600 md:py-1 md:p-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800">
-        doge
-      </h6> */}
-    </Card>
   );
 };
 
