@@ -19,9 +19,7 @@ const Gallery = () => {
       return { id: index, src: info };
     });
 
-    console.log(state.clickCount, "not working!!!");
-
-    setPhotos(arr.slice(0, state.clickCount * 20 + 20));
+    setPhotos(arr);
 
     // Keep Skeleton visible for 1.5s as images render
     setTimeout(() => {
@@ -30,7 +28,7 @@ const Gallery = () => {
 
     // Reset to True
     setHidden(true);
-  }, [page, state.photos, state.clickCount]);
+  }, [page, state.photos]);
 
   return (
     <>
@@ -39,7 +37,7 @@ const Gallery = () => {
         <Container className={`${hidden ? "invisible" : "visible"}`}>
           <MasonicDiv>
             <Masonry
-              items={photos}
+              items={photos.slice(0, state.clickCount * 20 + 20)}
               render={FakeCard}
               key={uuid()}
               columnGutter={8}
