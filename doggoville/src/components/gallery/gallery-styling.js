@@ -5,7 +5,6 @@ export const MasonicDiv = styled.div`
   padding: 8px;
   width: 100%;
   max-width: 960px;
-  margin: 163px auto;
   overflow: scroll;
   height: 100%;
 `;

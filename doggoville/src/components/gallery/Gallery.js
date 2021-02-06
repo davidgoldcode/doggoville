@@ -9,16 +9,19 @@ import { Skeleton } from "../skeleton";
 const Gallery = () => {
   const { state, dispatch } = useAppContext();
 
-  const [items, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState([]);
   const [hidden, setHidden] = useState(true);
+
   const page = useParams();
 
   useEffect(() => {
-    const items = state.photos.map((info, index) => {
+    const arr = state.photos.map((info, index) => {
       return { id: index, src: info };
     });
 
-    setPhotos(items);
+    console.log(state.clickCount, "not working!!!");
+
+    setPhotos(arr.slice(0, state.clickCount * 20 + 20));
 
     // Keep Skeleton visible for 1.5s as images render
     setTimeout(() => {
@@ -27,7 +30,7 @@ const Gallery = () => {
 
     // Reset to True
     setHidden(true);
-  }, [page, state.photos]);
+  }, [page, state.photos, state.clickCount]);
 
   return (
     <>
@@ -36,13 +39,19 @@ const Gallery = () => {
         <Container className={`${hidden ? "invisible" : "visible"}`}>
           <MasonicDiv>
             <Masonry
-              items={items}
+              items={photos}
               render={FakeCard}
               key={uuid()}
               columnGutter={8}
               overscanBy={6}
             />
           </MasonicDiv>
+          <button
+            onClick={() => dispatch({ type: "ADD_MORE_PHOTOS" })}
+            className="md:text-2xl w-1/2 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-600"
+          >
+            See more
+          </button>
         </Container>
       }
     </>

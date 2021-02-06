@@ -6,6 +6,7 @@ export const SET_FIRST_INITIAL = "SET_FIRST_INITIAL";
 export const INITIAL_LOAD = "INITIAL_LOAD";
 export const SKELETON_TOGGLE = "SKELETON_TOGGLE";
 export const STATE_RELOAD = "STATE_RELOAD";
+export const ADD_MORE_PHOTOS = "ADD_MORE_PHOTOS";
 
 // ------ Reasoning ------
 // Since we're compiling the entire state into one...
@@ -41,6 +42,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         curr: action.payload,
+        clickCount: 0,
       };
     case SET_FIRST_INITIAL:
       return {
@@ -52,7 +54,11 @@ const reducer = (state, action) => {
         ...state,
         skeleton: action.payload,
       };
-
+    case ADD_MORE_PHOTOS:
+      return {
+        ...state,
+        clickCount: (state.clickCount += 1),
+      };
     case STATE_RELOAD:
       return { ...state };
     default:
