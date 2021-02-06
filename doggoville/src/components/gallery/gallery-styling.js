@@ -35,27 +35,3 @@ export const Card = styled.div`
     }
   }
 `;
-
-// ------------------
-export const Div = styled.div`
-  height: 100vh;
-  overflow: scroll;
-
-  .my-masonry-grid {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-  }
-  .my-masonry-grid_column {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .my-masonry-grid_column {
-    margin-bottom: 30px;
-  }
-`;

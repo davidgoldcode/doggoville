@@ -1,19 +1,10 @@
 // import Masonry from "react-masonry-css";
-import { MasonicDiv, Container, Card, H1 } from "./gallery-styling";
-import useWindowScroll from "@react-hook/window-scroll";
+import { MasonicDiv, Container, Card } from "./gallery-styling";
 import { useAppContext } from "../../context/state";
-import { useRef, useState, useEffect } from "react";
-import { useWindowSize } from "@react-hook/window-size";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { BrowserRouter, Route, Link, useParams } from "react-router-dom";
-import {
-  useMasonry,
-  Masonry,
-  usePositioner,
-  useContainerPosition,
-  useScroller,
-  useResizeObserver,
-} from "masonic";
+import { useParams } from "react-router-dom";
+import { Masonry } from "masonic";
 
 const Gallery = () => {
   const { state, dispatch } = useAppContext();
@@ -37,7 +28,6 @@ const Gallery = () => {
           render={FakeCard}
           key={uuid()}
           columnGutter={8}
-          columnWidth={172}
           overscanBy={6}
         />
       </MasonicDiv>
