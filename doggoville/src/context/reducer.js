@@ -4,6 +4,7 @@ export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const SET_CURR = "SET_CURR";
 export const SET_FIRST_INITIAL = "SET_FIRST_INITIAL";
 export const INITIAL_LOAD = "INITIAL_LOAD";
+export const SKELETON_TOGGLE = "SKELETON_TOGGLE";
 export const STATE_RELOAD = "STATE_RELOAD";
 
 // ------ Reasoning ------
@@ -46,6 +47,12 @@ const reducer = (state, action) => {
         ...state,
         sorted: action.payload,
       };
+    case SKELETON_TOGGLE:
+      return {
+        ...state,
+        skeleton: action.payload,
+      };
+
     case STATE_RELOAD:
       return { ...state };
     default:
