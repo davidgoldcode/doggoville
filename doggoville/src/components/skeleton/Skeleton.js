@@ -18,11 +18,4 @@ const Grid = (props) => {
   );
 };
 
-Grid.metadata = {
-  name: "baptiste fkt",
-  github: "baptistefkt",
-  description: "Three column grid layout",
-  filename: "Grid",
-};
-
 export default Grid;

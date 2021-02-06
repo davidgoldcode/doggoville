@@ -7,11 +7,10 @@ import { onRouteChange } from "../../utils/fetch";
 import { Gallery } from "../gallery";
 import { Search } from "../search";
 import { Modal } from "../modal";
-import { Skeleton } from "../skeleton";
 
 const Main = () => {
   const { state, dispatch } = useAppContext();
-  const { breeds, sorted, photos, showModal, skeleton } = state;
+  const { breeds, sorted, showModal } = state;
 
   const location = useLocation();
 

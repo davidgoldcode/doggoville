@@ -17,14 +17,14 @@ const Gallery = () => {
       return { id: index, src: info };
     });
 
-    console.log("skeleton toggle");
-
+    // Turn skeleton animation on, but allow 1.5s for grid to render
     setTimeout(() => {
       dispatch({ type: "SKELETON_TOGGLE", payload: false });
     }, 1500);
 
     setPhotos(items);
 
+    // set back to True for next load
     dispatch({ type: "SKELETON_TOGGLE", payload: true });
   }, [page, state.photos, dispatch]);
 
