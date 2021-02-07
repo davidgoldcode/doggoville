@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppContext } from "../../context/state";
 import { useLocation } from "react-router-dom";
 import { onRouteChange } from "../../utils/fetch";
+
+// Styled Components
+import { Div } from "./main-styling";
 
 // Components
 import { Gallery } from "../gallery";
@@ -20,11 +23,11 @@ const Main = () => {
   }, [location.pathname, breeds, sorted, dispatch]);
 
   return (
-    <div className="md:col-start-3	md:col-span-3 md:row-start-1 row-span-1 row-start-2 overflow-y-scroll">
+    <Div>
       <Search />
       {showModal && <Modal />}
       <Gallery />
-    </div>
+    </Div>
   );
 };
 

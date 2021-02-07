@@ -1,10 +1,13 @@
-import { MasonicDiv, Container } from "./gallery-styling";
 import { useAppContext } from "../../context/state";
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams, useHistory } from "react-router-dom";
 import { Masonry } from "masonic";
 import { pullLikeList } from "../../utils/likes";
+
+// Styled Components
+import { MasonicDiv, Container } from "./gallery-styling";
+import { Button } from "../../styles/ReusableStyles";
 
 // Components
 import { Skeleton } from "../skeleton";
@@ -51,7 +54,7 @@ const Gallery = () => {
             onClick={(e) => getLikeList(e)}
             className="md:text-l w-1/2 p-4 mb-4 text-m font-black uppercase text-primary font-bold rounded bg-indigo-600 hover:bg-red-600"
           >
-            Your likes ❤️{" "}
+            ❤️❤️❤️ Your likes ❤️❤️❤️
           </button>
           <MasonicDiv>
             <Masonry
@@ -62,12 +65,9 @@ const Gallery = () => {
               overscanBy={6}
               curr={state.curr}
             />
-            <button
-              onClick={() => dispatch({ type: "ADD_MORE_PHOTOS" })}
-              className="md:text-2xl w-1/2 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-600"
-            >
+            <Button onClick={() => dispatch({ type: "ADD_MORE_PHOTOS" })}>
               See more
-            </button>
+            </Button>
           </MasonicDiv>
         </Container>
       }
