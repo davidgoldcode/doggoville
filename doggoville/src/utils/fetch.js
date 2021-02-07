@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const urlRandom = "https://dog.ceo/api/breeds/image/random/20";
+const urlRandom = "https://dog.ceo/api/breeds/image/random/50";
 const urlAllBreeds = "https://dog.ceo/api/breeds/list/all";
 
 export const fetch = async (url) => {
@@ -8,12 +8,11 @@ export const fetch = async (url) => {
 };
 
 export const fetchByBreed = (breed) => {
-  const url = `https://dog.ceo/api/breed/${breed}/images/random/20`;
+  const url = `https://dog.ceo/api/breed/${breed}/images/random/50`;
   return fetch(url);
 };
 
 export const fetchManyBreeds = (urls, dispatch) => {
-  console.log("hey");
   return axios.all(urls);
 };
 
@@ -28,7 +27,6 @@ export const onRender = (dispatch) => {
       axios.spread((...res) => {
         // Send combined array to context via reducer
         dispatch({ type: "INITIAL_LOAD", payload: res });
-        console.log("ok");
       })
     )
     .catch((err) => {

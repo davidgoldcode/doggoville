@@ -16,6 +16,7 @@ const initialState = {
   showModal: false,
   curr: "",
   skeleton: true,
+  clickCount: 0,
 };
 
 // ------ Reasoning ------
@@ -29,7 +30,7 @@ export function ContextProvider({ children }) {
   // Stabilize dispatch so it can be used as a useeffect dependency
   const dispatch = useCallback(unstableDispatch, [unstableDispatch]);
 
-  console.log({ state, dispatch }, "state.js");
+  console.log(state, "state.js");
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>
