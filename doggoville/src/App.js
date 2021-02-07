@@ -28,6 +28,7 @@ function App() {
     // initiate command + K keydown effect
     window.addEventListener("keydown", handleKeyDown);
 
+    // clean up
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
