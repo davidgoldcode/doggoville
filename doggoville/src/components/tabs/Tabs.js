@@ -1,8 +1,11 @@
 import { useHistory } from "react-router-dom";
 import { useAppContext } from "../../context/state";
-import { useEffect, useState, useCallback } from "react";
-import { InfoLinks } from "../../styles/CustomStyles";
+import { useEffect, useState } from "react";
 import { alphabatize } from "../../utils/alphabatize";
+
+// Styled Components
+import { Button, InfoLinks } from "../../styles/ReusableStyles";
+import { TabDiv, Ul } from "./tabs-styling";
 
 const buttonNames = [
   { name: "breeds" },
@@ -61,27 +64,25 @@ const Tabs = () => {
   };
 
   return (
-    <div className="md:flex flex-col w-full md:col-start-2 md:col-span-1 hidden">
+    <TabDiv>
       <div className="w-full text-center">
         {buttonNames.map((item, index) =>
           item.name === "subbreeds" &&
           (breeds[curr] === undefined || breeds[curr].length <= 0) ? null : (
-            <button
+            <Button
               key={index}
-              className={`md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300 ${
-                clicked === item.name && "bg-indigo-600"
-              }`}
+              className={`${clicked === item.name && "bg-indigo-600"}`}
               onClick={(e) => buttonHandler(e)}
               name={item.name}
             >
               {item.name}
-            </button>
+            </Button>
           )
         )}
       </div>
 
       {/* BY BREED */}
-      <ul className="overflow-scroll w-auto flex flex-col self-center p-4 md:text-right text-center">
+      <Ul>
         {breedsArr.map((item, index) => (
           <InfoLinks
             key={index}
@@ -118,8 +119,8 @@ const Tabs = () => {
             {item}
           </InfoLinks>
         ))}
-      </ul>
-    </div>
+      </Ul>
+    </TabDiv>
   );
 };
 

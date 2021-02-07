@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { handleLikes, nameHandler } from "../../utils/likes";
+
+// Styled Components
 import { Card } from "./dogcard-styling";
 
 const DogCard = ({ data }) => {

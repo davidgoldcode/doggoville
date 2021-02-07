@@ -1,4 +1,5 @@
 import GlobalStyles from "./styles/GlobalStyles";
+import { Grid } from "./styles/ReusableStyles";
 import { useAppContext } from "./context/state";
 import { useEffect } from "react";
 import { onRender } from "./utils/fetch";
@@ -17,7 +18,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="grid md:grid-cols-5 md:grid-rows-1 grid-cols-1 grid-rows-2 h-screen w-screen">
+    <Grid>
       <GlobalStyles />
 
       <Sidebar />
@@ -31,7 +32,7 @@ function App() {
         {/* Route validation (/:breed vs :/letter is in component */}
         <Route path="/:identifier/:subbreed" />
       </Switch>
-    </div>
+    </Grid>
   );
 }
 

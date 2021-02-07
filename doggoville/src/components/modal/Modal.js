@@ -1,8 +1,11 @@
 import { useHistory } from "react-router-dom";
-import { Div, GrayBg, SearchDiv, SearchButton } from "./modal-styling";
 import { useEffect, useState, useRef } from "react";
 import { useAppContext } from "../../context/state";
 import Fuse from "fuse.js";
+
+// Styled Components
+import { Div, GrayBg, SearchDiv, H2, Input } from "./modal-styling";
+import { InfoLinks, Button } from "../../styles/ReusableStyles";
 
 const Modal = () => {
   const { state, dispatch } = useAppContext();
@@ -63,14 +66,11 @@ const Modal = () => {
     <>
       <GrayBg ref={ref}></GrayBg>
       <Div>
-        <div class="p-4 flex w-full justify-center items-center">
-          <h3 class="font-semibold text-lg">Search</h3>
-          {/* <button class="text-black">x</button> */}
-        </div>
+        <H2>Search</H2>
+        {/* <button class="text-black">x</button> */}
 
         {/*content*/}
-        <input
-          class="w-5/6 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+        <Input
           type="search"
           name="search"
           placeholder="Search"
@@ -80,21 +80,17 @@ const Modal = () => {
           {searchResults !== null &&
             searchResults !== undefined &&
             searchResults.map((query) => (
-              <SearchButton
+              <InfoLinks
+                className="w-auto"
                 onClick={(e) => clickHandler(e)}
                 name={query.item.breed}
               >
                 {query.item.breed}
-              </SearchButton>
+              </InfoLinks>
             ))}
         </SearchDiv>
-        <div class="flex w-full justify-end p-3">
-          <button class="bg-indigo-600 hover:bg-indigo-700 px-3 py-1 rounded text-white mr-1">
-            Cancel
-          </button>
-          <button class="bg-indigo-600 hover:bg-indigo-700 px-3 py-1 rounded text-white">
-            Search
-          </button>
+        <div class="w-1/4 self-end p-3">
+          <Button>Cancel</Button>
         </div>
       </Div>
     </>

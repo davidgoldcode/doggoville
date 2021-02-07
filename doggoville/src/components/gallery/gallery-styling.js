@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
-export const MasonicDiv = styled.div`
-  padding: 8px;
-  width: 100%;
+export const MasonicDiv = styled.div.attrs({
+  className: "w-full h-full p-2 scroll relative text-center",
+})`
   max-width: 960px;
-  overflow: scroll;
-  height: 100%;
-  position: relative;
-  text-align: center;
 `;
 
 export const Container = styled.div`
