@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.6.3",
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
+    "fuse.js": "^6.4.6",
     "masonic": "^3.4.0",
     "normalize.css": "^8.0.1",
     "postcss": "^7.0.35",

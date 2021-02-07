@@ -24,3 +24,16 @@ export const GrayBg = styled.div`
   z-index: 500;
   opacity: 25%;
 `;
+
+export const SearchDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  width: 80%;
+  text-transform: capitalize;
+`;
+
+export const SearchButton = styled.button`
+  background-color: purple;
+  text-align: start;
+`;
