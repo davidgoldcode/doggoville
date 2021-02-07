@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
-export const Div = styled.div.attrs({ className: "rounded w-2/3 bg-white" })`
+export const Div = styled.div.attrs({
+  className: "rounded w-2/3 h-1/3 bg-white",
+})`
   position: absolute;
   left: 50%;
   top: 40%;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   transform: translate(-50%, -50%);
   z-index: 501;
