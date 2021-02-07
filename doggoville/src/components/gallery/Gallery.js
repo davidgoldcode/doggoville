@@ -8,7 +8,7 @@ import { pullLikeList } from "../../utils/likes";
 
 // Components
 import { Skeleton } from "../skeleton";
-import { DogCard } from "../DogCard";
+import { DogCard } from "../dogCard";
 
 const Gallery = () => {
   const { state, dispatch } = useAppContext();
