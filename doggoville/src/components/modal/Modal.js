@@ -1,34 +1,67 @@
+import { useHistory } from "react-router-dom";
 import { Div, GrayBg, SearchDiv, SearchButton } from "./modal-styling";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAppContext } from "../../context/state";
 import Fuse from "fuse.js";
 
 const Modal = () => {
   const { state, dispatch } = useAppContext();
-  const data = Object.keys(state.breeds);
 
   const [value, setValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const fuse = new Fuse(data, {
-    keys: ["breed"],
-  });
+  const ref = useRef();
 
-  const clickHandler = (e) => {
-    e.preventDefault();
-    return dispatch({ type: "TOGGLE_MODAL" });
+  const history = useHistory();
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      e.preventDefault();
+      if (ref.current && ref.current.contains(e.target)) {
+        dispatch({ type: "TOGGLE_MODAL" });
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    const data = Object.keys(state.breeds).map((item) => {
+      return {
+        breed: item,
+        subbreeds: state.breeds[item],
+        firstInitial: item[0],
+      };
+    });
+
+    const fuse = new Fuse(data, {
+      keys: ["breed"],
+    });
+
+    const results = fuse.search(value);
+
+    setSearchResults(results);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [state.breeds, value]);
+
+  const clickHandler = (evt) => {
+    evt.preventDefault();
+    const { name } = evt.target;
+    dispatch({ type: "SET_CURR", payload: name });
+    dispatch({ type: "TOGGLE_MODAL" });
+    history.push(`/${name}`);
   };
 
   const searchHandler = (evt) => {
     evt.preventDefault();
     const { value } = evt.target;
     setValue(value);
-    const results = fuse.search("a");
-    setSearchResults(results);
   };
 
   return (
     <>
+      <GrayBg ref={ref}></GrayBg>
       <Div>
         <div class="p-4 flex w-full justify-center items-center">
           <h3 class="font-semibold text-lg">Search</h3>
@@ -45,8 +78,14 @@ const Modal = () => {
         />
         <SearchDiv>
           {searchResults !== null &&
+            searchResults !== undefined &&
             searchResults.map((query) => (
-              <SearchButton>{query.item}</SearchButton>
+              <SearchButton
+                onClick={(e) => clickHandler(e)}
+                name={query.item.breed}
+              >
+                {query.item.breed}
+              </SearchButton>
             ))}
         </SearchDiv>
         <div class="flex w-full justify-end p-3">
@@ -58,7 +97,6 @@ const Modal = () => {
           </button>
         </div>
       </Div>
-      <GrayBg></GrayBg>
     </>
   );
 };
