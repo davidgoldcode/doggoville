@@ -14,7 +14,7 @@ export const Section = styled.section.attrs({
 // Mailto anchor
 export const Anchor = styled.a.attrs({
   className:
-    "text-primary lg:text-3xl md:text-2xl text-l font-black m-2 lowercase",
+    "text-primary lg:text-2xl md:text-xl text-l font-black m-2 lowercase hover:text-primaryDarker",
 })``;
 
 // Footer
