@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Modal Div
 export const Div = styled.div.attrs({
   className:
-    "w-2/3 h-auto max-h-1/2 border flex flex-col justify-around items-center	rounded p-2 m-2 bg-gray-100 z-50",
+    "w-2/3 h-auto max-h-1/2 border flex flex-col justify-around items-center	rounded p-2 m-2 bg-gray-100 z-50 overflow-scroll",
 })`
   position: absolute;
   left: 50%;
@@ -19,8 +19,10 @@ export const H2 = styled.h2.attrs({
 // Search Input
 export const Input = styled.input.attrs({
   className:
-    "w-5/6 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none",
-})``;
+    "w-5/6 block appearance-none border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none",
+})`
+  -webkit-appearance: none;
+`;
 
 // Opaque "clicking" background
 export const GrayBg = styled.div`
@@ -36,5 +38,5 @@ export const GrayBg = styled.div`
 
 // Div around search results
 export const SearchDiv = styled.div.attrs({
-  className: "w-3/4 flex p-2 flex-wrap bg-scroll uppercase",
+  className: "w-3/4 h-1/2 flex p-2 m-2 flex-wrap overflow-y-scroll uppercase",
 })``;
