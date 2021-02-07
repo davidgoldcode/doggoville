@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Card } from "./dogcard-styling";
 import { handleLikes, nameHandler } from "../../utils/likes";
+import { Card } from "./dogcard-styling";
 
 const DogCard = ({ data }) => {
   const { height, src } = data;
@@ -8,7 +8,6 @@ const DogCard = ({ data }) => {
 
   useEffect(() => {
     nameHandler(src) && setLiked(true);
-    console.log("dogcard");
   }, [src]);
 
   const clickHandler = (e) => {
@@ -22,9 +21,13 @@ const DogCard = ({ data }) => {
       <img src={src} alt="Doggo" />
       <button
         onClick={(e) => clickHandler(e)}
-        className="text-xs sm:m-2 text-black font-semibold w-auto inline-block border-2 border-indigo-600 md:py-1 md:p-2 px-1 uppercase rounded-full bg-purple-200 hover:bg-indigo-800 hover:text-primary"
+        className={`absolute bottom-1 left-1 text-xs text-black font-semibold w-auto inline-block border-2 md:py-1 md:p-2 px-1 uppercase rounded-full  ${
+          liked
+            ? "bg-red-200 hover:bg-red-800 border-red-600 hover:text-red"
+            : "bg-indigo-200 hover:bg-indigo-800 border-indigo-600 hover:text-primary"
+        }`}
       >
-        {liked ? "Unlike" : "Like"}
+        {liked ? "Unlike 💔" : "Like ❤️"}
       </button>
     </Card>
   );
