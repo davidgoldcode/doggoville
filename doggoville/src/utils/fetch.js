@@ -16,6 +16,20 @@ export const fetchManyBreeds = (urls, dispatch) => {
   return axios.all(urls);
 };
 
+export const fetchLikedDogs = async (urls) => {
+  const arr = await axios
+    .all(urls)
+    .then(
+      axios.spread((...res) => {
+        return res;
+      })
+    )
+    .catch((err) => {
+      return alert("Something went wrong. Try again in a bit");
+    });
+  return arr;
+};
+
 export const onRender = (dispatch) => {
   // Make two calls - one for random images & one to get all breeds
   const random = fetch(urlRandom);

@@ -5,5 +5,6 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  position: relative;
   width: 100%;
 `;

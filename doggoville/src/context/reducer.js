@@ -1,12 +1,13 @@
-export const SET_IMGS = "SET_IMGS";
-export const GET_BREEDS = "GET_BREEDS";
-export const TOGGLE_MODAL = "TOGGLE_MODAL";
-export const SET_CURR = "SET_CURR";
-export const SET_FIRST_INITIAL = "SET_FIRST_INITIAL";
-export const INITIAL_LOAD = "INITIAL_LOAD";
-export const SKELETON_TOGGLE = "SKELETON_TOGGLE";
-export const STATE_RELOAD = "STATE_RELOAD";
-export const ADD_MORE_PHOTOS = "ADD_MORE_PHOTOS";
+const SET_IMGS = "SET_IMGS";
+const GET_BREEDS = "GET_BREEDS";
+const TOGGLE_MODAL = "TOGGLE_MODAL";
+const SET_CURR = "SET_CURR";
+const SET_FIRST_INITIAL = "SET_FIRST_INITIAL";
+const INITIAL_LOAD = "INITIAL_LOAD";
+const SKELETON_TOGGLE = "SKELETON_TOGGLE";
+const STATE_RELOAD = "STATE_RELOAD";
+const ADD_MORE_PHOTOS = "ADD_MORE_PHOTOS";
+const GET_LIKES = "GET_LIKES";
 
 // ------ Reasoning ------
 // Since we're compiling the entire state into one...
@@ -59,6 +60,13 @@ const reducer = (state, action) => {
         ...state,
         clickCount: (state.clickCount += 1),
       };
+    case GET_LIKES:
+      return {
+        ...state,
+        photos: action.payload,
+        curr: "likes",
+      };
+
     case STATE_RELOAD:
       return { ...state };
     default:

@@ -1,3 +1,5 @@
+import { fetchLikedDogs } from "./fetch";
+
 export const handleLikes = (src) => {
   // Get stored likes, default to empty array
   const likes = JSON.parse(localStorage.getItem("likes")) || [];
@@ -17,6 +19,7 @@ export const handleLikes = (src) => {
   return localStorage.setItem("likes", JSON.stringify(likes));
 };
 
+// Check if specific dog is liked
 export const nameHandler = (src) => {
   if (localStorage.getItem("likes") === null) {
     return false;
@@ -24,5 +27,16 @@ export const nameHandler = (src) => {
     return true;
   } else {
     return false;
+  }
+};
+
+// Pull list of images under list to render
+export const pullLikeList = async () => {
+  if (localStorage.getItem("likes") === null) {
+    alert("You haven't added any likes yet! Add your first like below");
+  } else {
+    const likes = JSON.parse(localStorage.getItem("likes"));
+    const arr = await fetchLikedDogs(likes);
+    return arr;
   }
 };
