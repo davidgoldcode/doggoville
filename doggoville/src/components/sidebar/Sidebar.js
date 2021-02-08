@@ -1,7 +1,9 @@
 import { RiRefreshLine } from "react-icons/ri";
+import { default as webp } from "../../assets/doge.webp";
+import { default as png } from "../../assets/doge.png";
 
 // Styled Components
-import { Anchor, Section, Footer, Header, H2 } from "./sidebar-styling";
+import { Anchor, Section, Footer, Header, H2, Img } from "./sidebar-styling";
 import { Link } from "../../styles/ReusableStyles";
 
 const Sidebar = () => {
@@ -9,6 +11,7 @@ const Sidebar = () => {
     <Header>
       <Link to="/">
         <h1>Doggoville</h1>
+        <Img src={webp} fallback={png} />
       </Link>
 
       <Section>

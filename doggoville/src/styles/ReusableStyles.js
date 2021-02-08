@@ -4,7 +4,7 @@ import { Link as Anchor } from "react-router-dom";
 // Sidebar anchor tags / routes
 export const Link = styled(Anchor).attrs({
   className:
-    "text-primary lg:text-2xl md:text-xl text-l font-black m-2 lowercase hover:text-primaryDarker",
+    "text-primary lg:text-2xl text-center md:text-xl text-l font-black m-2 lowercase hover:text-primaryDarker",
 })``;
 
 // Lists displaying breeds, subbreeds, single initials on Tabs
@@ -22,5 +22,5 @@ export const Grid = styled.div.attrs({
 // Custom button for Tabs.js
 export const Button = styled.button.attrs({
   className:
-    "md:text-2xl w-5/6 border-l border-r text-l font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300",
+    "md:text-xl lg:text-2xl w-5/6 border-l border-r text-lg font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300",
 })``;

@@ -15,7 +15,6 @@ const GET_LIKES = "GET_LIKES";
 // readability & clarity
 
 const reducer = (state, action) => {
-  console.log(state, action, "reducer.js");
   switch (action.type) {
     case INITIAL_LOAD:
       const [randomImgs, allBreeds] = action.payload;

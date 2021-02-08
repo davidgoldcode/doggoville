@@ -4,6 +4,6 @@
 
 @layer base {
   h1 {
-    @apply text-primary lg:text-4xl md:text-3xl text-xl font-black m-2 lowercase;
+    @apply text-primary lg:text-4xl md:text-2xl text-xl font-black m-2 lowercase;
   }
 } ;

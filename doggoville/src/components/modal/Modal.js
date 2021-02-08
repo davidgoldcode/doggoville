@@ -86,8 +86,10 @@ const Modal = () => {
               </InfoLinks>
             ))}
         </SearchDiv>
-        <div className="w-1/4 self-end p-3">
-          <Button onClick={(e) => toggleHandler(e)}>Cancel</Button>
+        <div className="w-1/3 self-end p-3">
+          <Button onClick={(e) => toggleHandler(e)} className="bg-indigo-800">
+            Cancel
+          </Button>
         </div>
       </Div>
       <GrayBg onClick={(e) => handleClick(e)} ref={ref}></GrayBg>

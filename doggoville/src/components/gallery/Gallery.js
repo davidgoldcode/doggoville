@@ -1,5 +1,5 @@
 import { useAppContext } from "../../context/state";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams, useHistory } from "react-router-dom";
 import { Masonry } from "masonic";
@@ -32,7 +32,7 @@ const Gallery = () => {
     // Keep skeleton img visible for 1.5s as images render
     setTimeout(() => {
       setHidden(false);
-    }, 1500);
+    }, 2000);
 
     // Reset to True to hide skeleton img
     setHidden(true);
