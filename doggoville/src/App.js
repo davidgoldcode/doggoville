@@ -19,9 +19,10 @@ function App() {
     onRender(dispatch);
 
     const handleKeyDown = (e) => {
-      e.preventDefault();
       if ((e.metaKey || e.ctrlKey) && e.code === "KeyK") {
         dispatch({ type: "TOGGLE_MODAL" });
+      } else {
+        return;
       }
     };
 

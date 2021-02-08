@@ -57,11 +57,8 @@ const Modal = () => {
   };
 
   const searchHandler = (evt) => {
-    alert(evt);
     evt.preventDefault();
-    alert(evt.target.value);
     const { value } = evt.target;
-    console.log(value);
     setInput(value);
   };
 
