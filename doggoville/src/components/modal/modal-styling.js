@@ -21,7 +21,7 @@ export const Input = styled.input.attrs({
   className:
     "w-5/6 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm",
 })`
-  z-index: 10000;
+  text-rendering: optimizeLegibility;
 `;
 
 // Opaque "clicking" background
@@ -32,7 +32,6 @@ export const GrayBg = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: lightgray;
-  z-index: 1;
   opacity: 25%;
 `;
 

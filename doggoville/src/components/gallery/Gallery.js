@@ -11,7 +11,7 @@ import { Button } from "../../styles/ReusableStyles";
 
 // Components
 import { Skeleton } from "../skeleton";
-import { DogCard } from "../dogCard";
+import { DogCard } from "../DogCard";
 
 const Gallery = () => {
   const [state, dispatch] = useAppContext();

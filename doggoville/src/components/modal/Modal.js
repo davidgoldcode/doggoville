@@ -11,7 +11,7 @@ const Modal = () => {
   const [state, dispatch] = useAppContext();
 
   const [searchResults, setSearchResults] = useState([]);
-  const [value, setValue] = useState("");
+  const [input, setInput] = useState("");
 
   const ref = useRef();
 
@@ -30,10 +30,10 @@ const Modal = () => {
       keys: ["breed"],
     });
 
-    const results = fuse.search(value);
+    const results = fuse.search(input);
 
     setSearchResults(results);
-  }, [state.breeds, value, dispatch]);
+  }, [state.breeds, input, dispatch]);
 
   const clickHandler = (evt) => {
     evt.preventDefault();
@@ -45,7 +45,7 @@ const Modal = () => {
 
   const toggleHandler = (e) => {
     e.preventDefault();
-    setValue("");
+    setInput("");
     dispatch({ type: "TOGGLE_MODAL" });
   };
 
@@ -57,24 +57,23 @@ const Modal = () => {
   };
 
   const searchHandler = (evt) => {
+    alert(evt);
     evt.preventDefault();
+    alert(evt.target.value);
     const { value } = evt.target;
     console.log(value);
-    setValue(value);
+    setInput(value);
   };
 
   return (
     <>
-      <GrayBg onClick={(e) => handleClick(e)} ref={ref}></GrayBg>
       <Div>
         <H2>Search</H2>
         <Input
           name="search"
-          type="text"
-          placeholder="Search"
-          autoFocus={true}
+          type="Search"
           autoComplete="off"
-          value={value}
+          value={input}
           onChange={(e) => searchHandler(e)}
         />
         <SearchDiv>
@@ -94,6 +93,7 @@ const Modal = () => {
           <Button onClick={(e) => toggleHandler(e)}>Cancel</Button>
         </div>
       </Div>
+      <GrayBg onClick={(e) => handleClick(e)} ref={ref}></GrayBg>
     </>
   );
 };
