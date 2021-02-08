@@ -46,7 +46,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Reac
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/davidgoldcode/doggovilleusa.git
+$ git clone https://github.com/davidgoldcode/doggoville.git
 
 # Go into the repository
 $ cd doggoville
