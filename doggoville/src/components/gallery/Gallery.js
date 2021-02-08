@@ -29,12 +29,12 @@ const Gallery = () => {
 
     setPhotos(arr);
 
-    // Keep Skeleton visible for 1.5s as images render
+    // Keep skeleton img visible for 1.5s as images render
     setTimeout(() => {
       setHidden(false);
     }, 1500);
 
-    // Reset to True
+    // Reset to True to hide skeleton img
     setHidden(true);
   }, [page, state.photos]);
 
