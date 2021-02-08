@@ -8,10 +8,10 @@ import { Div, GrayBg, SearchDiv, H2, Input } from "./modal-styling";
 import { InfoLinks, Button } from "../../styles/ReusableStyles";
 
 const Modal = () => {
-  const { state, dispatch } = useAppContext();
+  const [state, dispatch] = useAppContext();
 
-  const [value, setValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [value, setValue] = useState("");
 
   const ref = useRef();
 
@@ -43,12 +43,6 @@ const Modal = () => {
     history.push(`/${name}`);
   };
 
-  const searchHandler = (evt) => {
-    evt.preventDefault();
-    const { value } = evt.target;
-    setValue(value);
-  };
-
   const toggleHandler = (e) => {
     e.preventDefault();
     setValue("");
@@ -62,20 +56,26 @@ const Modal = () => {
     }
   };
 
+  const searchHandler = (evt) => {
+    evt.preventDefault();
+    const { value } = evt.target;
+    console.log(value);
+    setValue(value);
+  };
+
   return (
     <>
       <GrayBg onClick={(e) => handleClick(e)} ref={ref}></GrayBg>
       <Div>
         <H2>Search</H2>
-
-        {/*content*/}
         <Input
-          type="search"
           name="search"
+          type="search"
           placeholder="Search"
           autoFocus="true"
           autoComplete="off"
-          onChange={(evt) => searchHandler(evt)}
+          value={value}
+          onChange={(e) => searchHandler(e)}
         />
         <SearchDiv>
           {searchResults !== null &&
@@ -90,7 +90,7 @@ const Modal = () => {
               </InfoLinks>
             ))}
         </SearchDiv>
-        <div class="w-1/4 self-end p-3">
+        <div className="w-1/4 self-end p-3">
           <Button onClick={(e) => toggleHandler(e)}>Cancel</Button>
         </div>
       </Div>

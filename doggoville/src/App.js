@@ -13,7 +13,7 @@ import { Main } from "./components/main";
 import { Tabs } from "./components/tabs";
 
 function App() {
-  const { state, dispatch } = useAppContext();
+  const [state, dispatch] = useAppContext();
 
   useEffect(() => {
     onRender(dispatch);

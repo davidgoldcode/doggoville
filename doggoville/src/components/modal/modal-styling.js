@@ -19,9 +19,9 @@ export const H2 = styled.h2.attrs({
 // Search Input
 export const Input = styled.input.attrs({
   className:
-    "w-5/6 block appearance-none border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none",
+    "w-5/6 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm",
 })`
-  -webkit-appearance: none;
+  z-index: 10000;
 `;
 
 // Opaque "clicking" background
@@ -32,7 +32,7 @@ export const GrayBg = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: lightgray;
-  z-index: 10;
+  z-index: 1;
   opacity: 25%;
 `;
 

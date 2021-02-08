@@ -12,7 +12,7 @@ import { Search } from "../search";
 import { Modal } from "../modal";
 
 const Main = () => {
-  const { state, dispatch } = useAppContext();
+  const [state, dispatch] = useAppContext();
   const { breeds, sorted, showModal } = state;
 
   const location = useLocation();

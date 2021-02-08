@@ -14,7 +14,7 @@ import { Skeleton } from "../skeleton";
 import { DogCard } from "../dogCard";
 
 const Gallery = () => {
-  const { state, dispatch } = useAppContext();
+  const [state, dispatch] = useAppContext();
 
   const [photos, setPhotos] = useState([]);
   const [hidden, setHidden] = useState(true);

@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     overflow: hidden;
   }
 
-  /* clear input x on IE */
+  clear input x on IE
   input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
   input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
 
