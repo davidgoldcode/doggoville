@@ -12,7 +12,7 @@
 <br>
 
 [![Portfolio Page](https://img.shields.io/badge/Portfolio-%F0%9F%8E%A8-brightgreen)](https://davidgold.io)
-![GitHub followers](https://img.shields.io/github/followers/davidgoldcode?label=Follow&style=social) [![Twitter Badge](https://img.shields.io/badge/-Twitter-1ca0f1?style=flat-square&logo=twitter&logoColor=white&link=https://twitter.com/davidigold)](https://twitter.com/Isha_1321) [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/davidigold/)](https://www.linkedin.com/in/davidigold/) [![Gmail Badge](https://img.shields.io/badge/-Email_Me-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:davidgold@hey.com)](mailto:davidgold@hey.com)
+![GitHub followers](https://img.shields.io/github/followers/davidgoldcode?label=Follow&style=social) [![Twitter Badge](https://img.shields.io/badge/-Twitter-1ca0f1?style=flat-square&logo=twitter&logoColor=white&link=https://twitter.com/davidigold)](https://twitter.com/davidigold) [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/davidigold/)](https://www.linkedin.com/in/davidigold/) [![Gmail Badge](https://img.shields.io/badge/-Email_Me-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:davidgold@hey.com)](mailto:davidgold@hey.com)
 
 <br>
 
