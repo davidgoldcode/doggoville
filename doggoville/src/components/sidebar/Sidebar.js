@@ -27,7 +27,7 @@ const Sidebar = () => {
 
       <Section>
         <Link to="/">Home</Link>
-        <Link to="/about">About us </Link>
+        <Link to="/about">About </Link>
         <Button onClick={() => dispatch({ type: "TOGGLE_MODAL" })}>
           Search
         </Button>
