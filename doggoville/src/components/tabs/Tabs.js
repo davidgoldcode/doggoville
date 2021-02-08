@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useAppContext } from "../../context/state";
 import { useEffect, useState } from "react";
 import { alphabatize } from "../../utils/alphabatize";
+import { v4 as uuid } from "uuid";
 
 // Styled Components
 import { Button, InfoLinks } from "../../styles/ReusableStyles";
@@ -70,7 +71,7 @@ const Tabs = () => {
           item.name === "subbreeds" &&
           (breeds[curr] === undefined || breeds[curr].length <= 0) ? null : (
             <Button
-              key={index}
+              key={uuid()}
               className={`${clicked === item.name && "bg-indigo-600"}`}
               onClick={(e) => buttonHandler(e)}
               name={item.name}
@@ -85,7 +86,7 @@ const Tabs = () => {
       <Ul>
         {breedsArr.map((item, index) => (
           <InfoLinks
-            key={index}
+            key={uuid()}
             name={item}
             className={`${clicked !== "breeds" && "hidden"}`}
             onClick={(e) => clickHandler(e)}
@@ -99,7 +100,7 @@ const Tabs = () => {
           ? null
           : breeds[curr].map((item, index) => (
               <InfoLinks
-                key={index}
+                key={uuid()}
                 name={item}
                 className={`${clicked !== "subbreeds" && "hidden"}`}
                 onClick={(e) => clickHandler(e)}
@@ -111,7 +112,7 @@ const Tabs = () => {
         {/* BY FIRST LETTER */}
         {Object.keys(sorted).map((item, index) => (
           <InfoLinks
-            key={index}
+            key={uuid()}
             name={item}
             className={` ${clicked !== "alphabet" && "hidden"}`}
             onClick={(e) => clickHandler(e)}

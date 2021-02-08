@@ -1,12 +1,23 @@
 import { RiRefreshLine } from "react-icons/ri";
+import { useAppContext } from "../../context/state";
 import { default as webp } from "../../assets/doge.webp";
 import { default as png } from "../../assets/doge.png";
 
 // Styled Components
-import { Anchor, Section, Footer, Header, H2, Img } from "./sidebar-styling";
+import {
+  Anchor,
+  Section,
+  Footer,
+  Header,
+  H2,
+  Img,
+  Button,
+} from "./sidebar-styling";
 import { Link } from "../../styles/ReusableStyles";
 
 const Sidebar = () => {
+  const [state, dispatch] = useAppContext();
+
   return (
     <Header>
       <Link to="/">
@@ -16,8 +27,10 @@ const Sidebar = () => {
 
       <Section>
         <Link to="/">Home</Link>
-        <Link to="/about">About us </Link>
-        <Link to="/search">Search </Link>
+        <Link to="/about">About </Link>
+        <Button onClick={() => dispatch({ type: "TOGGLE_MODAL" })}>
+          Search
+        </Button>
         <Anchor href="mailto:workingona100sleepscore@inboxeen.com">
           Contact
         </Anchor>

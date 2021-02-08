@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useAppContext } from "../../context/state";
+import { v4 as uuid } from "uuid";
 import { default as Fuse } from "fuse.js";
 
 // Styled Components
@@ -64,12 +65,14 @@ const Modal = () => {
 
   return (
     <>
+      <GrayBg onClick={(e) => handleClick(e)} ref={ref}></GrayBg>
       <Div>
-        <H2>Search</H2>
+        <H2>Search by Breed</H2>
         <Input
           name="search"
           type="Search"
           autoComplete="off"
+          autoFocus="true"
           value={input}
           onChange={(e) => searchHandler(e)}
         />
@@ -81,6 +84,7 @@ const Modal = () => {
                 className="w-auto"
                 onClick={(e) => clickHandler(e)}
                 name={query.item.breed}
+                key={uuid()}
               >
                 {query.item.breed}
               </InfoLinks>
@@ -92,7 +96,6 @@ const Modal = () => {
           </Button>
         </div>
       </Div>
-      <GrayBg onClick={(e) => handleClick(e)} ref={ref}></GrayBg>
     </>
   );
 };

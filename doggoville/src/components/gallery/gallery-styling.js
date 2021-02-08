@@ -5,11 +5,3 @@ export const MasonicDiv = styled.div.attrs({
 })`
   max-width: 960px;
 `;
-
-export const Container = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-`;
