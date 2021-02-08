@@ -70,9 +70,9 @@ const Modal = () => {
         <H2>Search</H2>
         <Input
           name="search"
-          type="search"
+          type="text"
           placeholder="Search"
-          autoFocus="true"
+          autoFocus={true}
           autoComplete="off"
           value={value}
           onChange={(e) => searchHandler(e)}

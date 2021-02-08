@@ -38,5 +38,5 @@ export const GrayBg = styled.div`
 
 // Div around search results
 export const SearchDiv = styled.div.attrs({
-  className: "w-3/4 h-1/2 flex p-2 m-2 flex-wrap overflow-y-scroll uppercase",
+  className: "w-3/4 h-auto flex p-2 m-2 flex-wrap overflow-y-scroll uppercase",
 })``;
