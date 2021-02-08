@@ -1,20 +1,21 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-  :root {
-    --lime: #6fffb0;
-    --purple: #7d4cdb;
-    --red: #FF4949;
-    --black: #2E2E2E;
-    --yellow: #ffc600;
-    --white: #fff;
-    --grey: #efefef;
-  }
   html {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
   }
+
+  clear input x on IE
+  input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+  input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+  /* clear input x on Chrome */
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration { display: none; }
 `;
 
 export default GlobalStyles;

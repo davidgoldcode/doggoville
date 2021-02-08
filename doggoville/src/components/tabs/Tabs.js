@@ -14,7 +14,7 @@ const buttonNames = [
 ];
 
 const Tabs = () => {
-  const { state, dispatch } = useAppContext();
+  const [state, dispatch] = useAppContext();
   const { breeds, curr, sorted } = state;
 
   const history = useHistory();

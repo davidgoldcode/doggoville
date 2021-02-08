@@ -1,7 +1,14 @@
-import { createContext, useContext, useCallback, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  useCallback,
+  useReducer,
+} from "react";
 import reducer from "./reducer";
 
-const AppContext = createContext();
+const StateContext = createContext();
+const DispatchContext = createContext();
 
 // ------ Reasoning ------
 // • Photos come in as an array which allows to loop through easily
@@ -25,20 +32,32 @@ const initialState = {
 // but is likely a premature optimization in this SPA
 
 export function ContextProvider({ children }) {
-  const [state, unstableDispatch] = useReducer(reducer, initialState);
+  const [unstableState, unstableDispatch] = useReducer(reducer, initialState);
+
+  const state = useMemo(() => unstableState, [unstableState]);
 
   // Stabilize dispatch so it can be used as a useeffect dependency
   const dispatch = useCallback(unstableDispatch, [unstableDispatch]);
 
-  console.log(state, "state.js");
-
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
+        {children}
+      </DispatchContext.Provider>
+    </StateContext.Provider>
   );
 }
 
+export function useStateContext() {
+  const state = useContext(StateContext);
+  return state;
+}
+
+export function useDispatchContext() {
+  const dispatch = useContext(DispatchContext);
+  return dispatch;
+}
+
 export function useAppContext() {
-  return useContext(AppContext);
+  return [useStateContext(), useDispatchContext()];
 }

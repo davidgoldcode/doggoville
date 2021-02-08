@@ -4,7 +4,7 @@ import { useAppContext } from "../../context/state";
 import { Div, SearchButton, Span } from "./search-styling";
 
 const Search = () => {
-  const { state, dispatch } = useAppContext();
+  const [state, dispatch] = useAppContext();
 
   return (
     <Div>

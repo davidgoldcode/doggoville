@@ -1,32 +1,23 @@
 import { useHistory } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useAppContext } from "../../context/state";
-import Fuse from "fuse.js";
+import { default as Fuse } from "fuse.js";
 
 // Styled Components
 import { Div, GrayBg, SearchDiv, H2, Input } from "./modal-styling";
 import { InfoLinks, Button } from "../../styles/ReusableStyles";
 
 const Modal = () => {
-  const { state, dispatch } = useAppContext();
+  const [state, dispatch] = useAppContext();
 
-  const [value, setValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [value, setValue] = useState("");
 
   const ref = useRef();
 
   const history = useHistory();
 
   useEffect(() => {
-    const handleClick = (e) => {
-      e.preventDefault();
-      if (ref.current && ref.current.contains(e.target)) {
-        dispatch({ type: "TOGGLE_MODAL" });
-      }
-    };
-
-    document.addEventListener("click", handleClick);
-
     const data = Object.keys(state.breeds).map((item) => {
       return {
         breed: item,
@@ -42,11 +33,7 @@ const Modal = () => {
     const results = fuse.search(value);
 
     setSearchResults(results);
-
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, [state.breeds, value]);
+  }, [state.breeds, value, dispatch]);
 
   const clickHandler = (evt) => {
     evt.preventDefault();
@@ -56,25 +43,39 @@ const Modal = () => {
     history.push(`/${name}`);
   };
 
+  const toggleHandler = (e) => {
+    e.preventDefault();
+    setValue("");
+    dispatch({ type: "TOGGLE_MODAL" });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (ref.current && ref.current.contains(e.target)) {
+      toggleHandler(e);
+    }
+  };
+
   const searchHandler = (evt) => {
     evt.preventDefault();
     const { value } = evt.target;
+    console.log(value);
     setValue(value);
   };
 
   return (
     <>
-      <GrayBg ref={ref}></GrayBg>
+      <GrayBg onClick={(e) => handleClick(e)} ref={ref}></GrayBg>
       <Div>
         <H2>Search</H2>
-        {/* <button class="text-black">x</button> */}
-
-        {/*content*/}
         <Input
-          type="search"
           name="search"
+          type="search"
           placeholder="Search"
-          onChange={(evt) => searchHandler(evt)}
+          autoFocus="true"
+          autoComplete="off"
+          value={value}
+          onChange={(e) => searchHandler(e)}
         />
         <SearchDiv>
           {searchResults !== null &&
@@ -89,8 +90,8 @@ const Modal = () => {
               </InfoLinks>
             ))}
         </SearchDiv>
-        <div class="w-1/4 self-end p-3">
-          <Button>Cancel</Button>
+        <div className="w-1/4 self-end p-3">
+          <Button onClick={(e) => toggleHandler(e)}>Cancel</Button>
         </div>
       </Div>
     </>
