@@ -25,12 +25,9 @@ export const Input = styled.input.attrs({
 `;
 
 // Opaque "clicking" background
-export const GrayBg = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
+export const GrayBg = styled.div.attrs({
+  className: "absolute t-0 l-0 h-screen w-screen ",
+})`
   background-color: lightgray;
   opacity: 25%;
 `;

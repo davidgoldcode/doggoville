@@ -20,7 +20,7 @@ const Search = () => {
         </svg>
         <span>
           Quick search
-          <span className="hidden sm:inline"> for anything</span>
+          <span className="hidden sm:inline"> for breed</span>
         </span>
         <Span>
           <span className="sr-only">Press </span>

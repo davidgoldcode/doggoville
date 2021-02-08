@@ -26,7 +26,7 @@ const Main = () => {
     <Div>
       <Search />
       {showModal && <Modal />}
-      {/* <Gallery /> */}
+      <Gallery />
     </Div>
   );
 };
