@@ -7,7 +7,7 @@ import { Link } from "../../styles/ReusableStyles";
 const Sidebar = () => {
   return (
     <Header>
-      <Link href="/">
+      <Link to="/">
         <h1>Doggoville</h1>
       </Link>
 

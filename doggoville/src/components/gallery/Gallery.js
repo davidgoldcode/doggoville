@@ -59,7 +59,7 @@ const Gallery = () => {
           <MasonicDiv>
             <Masonry
               items={photos.slice(0, state.clickCount * 20 + 20)}
-              render={DogCard}
+              render={<DogCard />}
               key={uuid()}
               columnGutter={8}
               overscanBy={6}
