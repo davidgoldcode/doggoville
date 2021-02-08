@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="./doggoville/src/assets/doge.png" alt="Doge" width="200"></a>
+  <a href="http://doggoville.xyz"><img src="./src/assets/doge.png" alt="Doge" width="200"></a>
   <br>
   Doggoville
   <br>

@@ -24,7 +24,7 @@ const imgs = [
 const About = () => {
   return (
     <Div>
-      <h1> Hi 👋 I'm David </h1>
+      <h1 className="self-center"> Hi 👋 I'm David </h1>
       <h3>About me</h3>
       <p>
         I am a developer who recently finished Lambda School - a full-time, 6+
