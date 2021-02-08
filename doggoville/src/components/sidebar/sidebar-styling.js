@@ -32,3 +32,9 @@ export const H2 = styled.h2.attrs({
   className:
     "text-primary lg:text-2xl md:text-xl text-l font-black m-2 lowercase hover:text-primaryDarker",
 })``;
+
+// Modal triggering Button
+export const Button = styled.button.attrs({
+  className:
+    "text-primary lg:text-2xl md:text-xl text-l font-black m-2 lowercase hover:text-primaryDarker",
+})``;

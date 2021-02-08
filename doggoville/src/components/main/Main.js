@@ -10,6 +10,7 @@ import { Div } from "./main-styling";
 import { Gallery } from "../gallery";
 import { Search } from "../search";
 import { Modal } from "../modal";
+import { About } from "../about";
 
 const Main = () => {
   const [state, dispatch] = useAppContext();
@@ -26,7 +27,7 @@ const Main = () => {
     <Div>
       <Search />
       {showModal && <Modal />}
-      <Gallery />
+      {location.pathname === "/about" ? <About /> : <Gallery />}
     </Div>
   );
 };

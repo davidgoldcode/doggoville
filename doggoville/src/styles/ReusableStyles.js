@@ -24,3 +24,8 @@ export const Button = styled.button.attrs({
   className:
     "md:text-xl lg:text-2xl w-5/6 border-l border-r text-lg font-black uppercase hover:bg-indigo-800 text-primary font-bold p-2 m-2 rounded bg-indigo-300",
 })``;
+
+// Container for Main + /About
+export const Container = styled.div.attrs({
+  className: "h-full flex flex-col items-center	justify-between",
+})``;

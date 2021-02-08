@@ -6,4 +6,10 @@
   h1 {
     @apply text-primary lg:text-4xl md:text-2xl text-xl font-black m-2 lowercase;
   }
+  h3 {
+    @apply text-secondary lg:text-2xl md:text-lg font-black text-base m-2 uppercase;
+  }
+  p {
+    @apply text-secondary lg:text-xl md:text-base font-black text-sm m-2 lowercase;
+  }
 } ;

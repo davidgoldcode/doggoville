@@ -1,13 +1,13 @@
 import { useAppContext } from "../../context/state";
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import { useParams, useHistory } from "react-router-dom";
 import { Masonry } from "masonic";
 import { pullLikeList } from "../../utils/likes";
 
 // Styled Components
-import { MasonicDiv, Container } from "./gallery-styling";
-import { Button } from "../../styles/ReusableStyles";
+import { MasonicDiv } from "./gallery-styling";
+import { Button, Container } from "../../styles/ReusableStyles";
 
 // Components
 import { Skeleton } from "../skeleton";
@@ -24,7 +24,7 @@ const Gallery = () => {
 
   useEffect(() => {
     const arr = state.photos.map((info, index) => {
-      return { id: index, src: info };
+      return { id: uuid(), src: info };
     });
 
     setPhotos(arr);

@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Modal Div
 export const Div = styled.div.attrs({
   className:
-    "w-2/3 h-auto max-h-1/2 border flex flex-col justify-around items-center	rounded p-2 m-2 bg-gray-100 z-50 overflow-scroll",
+    "w-2/3 h-auto max-h-1/2 border flex flex-col justify-around items-center rounded p-2 m-2 bg-gray-100 z-50 overflow-scroll",
 })`
   position: absolute;
   left: 50%;
@@ -20,13 +20,11 @@ export const H2 = styled.h2.attrs({
 export const Input = styled.input.attrs({
   className:
     "w-5/6 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm",
-})`
-  z-index: 10000000;
-`;
+})``;
 
 // Opaque "clicking" background
 export const GrayBg = styled.div.attrs({
-  className: "absolute t-0 l-0 h-screen w-screen ",
+  className: "absolute top-0 left-0 h-screen w-screen z-40",
 })`
   background-color: lightgray;
   opacity: 25%;
